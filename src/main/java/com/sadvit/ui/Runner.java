@@ -7,11 +7,12 @@ public class Runner extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-       // ApplicationController controller = Loader.load("ApplicationView.fxml", "com.sadvit.ui", ApplicationController.class);
+        ApplicationController controller = Loader.load("ApplicationView.fxml");
+        controller.show(stage);
     }
 
     public static void main(String[] args) {
-        Loader.load("ApplicationView.fxml");
+        launch(args);
     }
 
 }

@@ -3,20 +3,21 @@ package com.sadvit.ui;
 import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
-import java.net.URL;
 
 /**
- * Должен загружать контроллер из FXML и возвращать ссылку на инициализированный контроллер.
+ * Используется для загрузки View и Controller из FXML файлов, находящихся в папке recourses/ui
  */
 public class Loader {
 
     public static final String FOLDER = "ui/";
 
+    /**
+     * Возвращает ссылку на связанный контроллер.
+     */
     public static <T> T load(String name) {
-        URL location = Loader.class.getClassLoader().getResource(FOLDER + name);
-        FXMLLoader fxmlLoader = new FXMLLoader(location);
+        FXMLLoader fxmlLoader = new FXMLLoader();
         try {
-            fxmlLoader.load();
+            fxmlLoader.load(Loader.class.getClassLoader().getResourceAsStream(FOLDER + name));
             return fxmlLoader.getController();
         } catch (IOException e) {
             e.printStackTrace();

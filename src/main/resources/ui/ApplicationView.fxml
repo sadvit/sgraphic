@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.sadvit.ui.ImageCanvas?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import ui.ImageCanvas?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.ApplicationController">
-   <top>
-       <MenuBar BorderPane.alignment="CENTER">
-           <Menu mnemonicParsing="false" text="File">
-               <MenuItem onAction="#onOpenClick" mnemonicParsing="false" text="Open"/>
-               <MenuItem onAction="#onSaveClick" mnemonicParsing="false" text="Save"/>
-               <MenuItem onAction="#onExitClick" mnemonicParsing="false" text="Exit"/>
-           </Menu>
-           <Menu mnemonicParsing="false" text="Edit">
-               <MenuItem onAction="#onRandomClick" mnemonicParsing="false" text="Random"/>
-           </Menu>
-       </MenuBar>
-   </top>
-   <center>
-       <Pane fx:id="pane">
-           <ImageCanvas fx:id="drawArea"/>
-       </Pane>
-   </center>
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.sadvit.ui.ApplicationController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="File">
+                <MenuItem onAction="#onOpenClick" mnemonicParsing="false" text="Open"/>
+                <MenuItem onAction="#onSaveClick" mnemonicParsing="false" text="Save"/>
+                <MenuItem onAction="#onExitClick" mnemonicParsing="false" text="Exit"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <MenuItem onAction="#onRandomClick" mnemonicParsing="false" text="Random"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <Pane fx:id="pane">
+            <ImageCanvas fx:id="drawArea"/>
+        </Pane>
+    </center>
 </BorderPane>
