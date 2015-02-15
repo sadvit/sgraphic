@@ -8,32 +8,28 @@ public class ImageCanvas extends Canvas {
 
     private SimpleImage image;
 
-    public void setImage(SimpleImage image) {
-        this.image = image;
-    }
-
-    public SimpleImage getImage() {
-        return image;
-    }
-
     public ImageCanvas() {
-        widthProperty().addListener(evt -> refresh());
-        heightProperty().addListener(evt -> refresh());
+        widthProperty().addListener(evt -> redraw());
+        heightProperty().addListener(evt -> redraw());
     }
 
-    public void refresh() {
-        if (image != null) {
-            draw(image);
-        }
-    }
-
-    private void draw(SimpleImage simpleImage) {
-        for (int i = 0; i < simpleImage.getWidth(); i++) {
-            for (int j = 0; j < simpleImage.getHeight(); j++) {
-                Color color = simpleImage.getColor(i, j);
-                getGraphicsContext2D().getPixelWriter().setColor(i, j, color);
+    public void redraw() {
+        if (image != null)
+            for (int i = 0; i < image.getWidth(); i++) {
+                for (int j = 0; j < image.getHeight(); j++) {
+                    Color color = image.getColor(i, j);
+                    getGraphicsContext2D().getPixelWriter().setColor(i, j, color);
+                }
             }
-        }
+    }
+
+    /**
+     * Draw and save simple image
+     * hack :(
+     */
+    public void draw(SimpleImage simpleImage) {
+        if (simpleImage != null) image = simpleImage;
+        redraw();
     }
 
     public void clean() {

@@ -15,7 +15,7 @@
                 <MenuItem onAction="#onExitClick" mnemonicParsing="false" text="Exit"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
-                <MenuItem onAction="#onRandomClick" mnemonicParsing="false" text="Random"/>
+                <MenuItem onAction="#onMosaicClick" mnemonicParsing="false" text="Mosaic"/>
             </Menu>
         </MenuBar>
     </top>

@@ -1,14 +1,13 @@
 package com.sadvit.ui;
 
+import com.sadvit.dialog.Dialogs;
 import com.sadvit.event.DrawMosaicEvent;
 import com.sadvit.event.DrawMosaicHandler;
-import com.sadvit.image.SimpleImage;
 import com.sadvit.mvc.AbstractController;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -37,6 +36,31 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         stage.setTitle("SGraphic");
         stage.setScene(scene);
         stage.show();
+        refresh();
+    }
+
+    public void refresh() {
+        drawArea.draw(getModel().getCurrentImage());
+        primaryStage.setResizable(false);
+        primaryStage.setWidth(getModel().getCurrentImage().getWidth());
+        primaryStage.setHeight(getModel().getCurrentImage().getHeight());
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        drawArea.widthProperty().bind(pane.widthProperty());
+        drawArea.heightProperty().bind(pane.heightProperty());
+        getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE);
+    }
+
+    @Override
+    public void attachHandlers() {
+        registerHandler(new DrawMosaicHandler() {
+            @Override
+            public void handle(DrawMosaicEvent event) {
+                drawMosaicAction(event.getSize());
+            }
+        });
     }
 
     public void onExitClick() {
@@ -66,55 +90,17 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         }
     }
 
-    public void onRandomClick() {
-        // TODO show mosaic dialog
+    public void onMosaicClick() {
+        Dialogs.showMosaicDialog();
     }
 
     private void drawMosaicAction(int size) {
-        SimpleImage image = drawArea.getImage(); // TODO check all mechanizm update picture...
-        for (int i = 0; i < image.getWidth() - 1; i += size) {
-            for (int j = 0; j < image.getHeight() - 1; j += size) {
-                Color c = randomColor();
-                for (int k = 0; k < size; k++) {
-                    for (int l = 0; l < size; l++) {
-                        image.setColor(i + k, j + l, c);
-                    }
-                }
-            }
-        }
+        getModel().createMosaicImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE, size);
         refresh();
     }
 
-    public void refresh() {
-        drawArea.setImage(getModel().getCurrentImage()); // TODO check
-        drawArea.refresh();
-        primaryStage.setWidth(getModel().getCurrentImage().getWidth());
-        primaryStage.setHeight(getModel().getCurrentImage().getHeight());
-    }
-
-    private Color randomColor() {
-        return new Color(Math.random(), Math.random(), Math.random(), 1);
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        drawArea.widthProperty().bind(pane.widthProperty());
-        drawArea.heightProperty().bind(pane.heightProperty());
-        //drawArea.setImage(SimpleImageUtils.create(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE));
-    }
-
-    @Override
-    public void attachHandlers() {
-        registerHandler(new DrawMosaicHandler() {
-            @Override
-            public void handle(DrawMosaicEvent event) {
-                drawMosaicAction(event.getSize());
-            }
-        });
-    }
-
     public ApplicationController() {
-        setModel(new ApplicationModel());
+        super(new ApplicationModel());
     }
 
 }

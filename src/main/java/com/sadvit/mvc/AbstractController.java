@@ -29,8 +29,8 @@ public abstract class AbstractController<M extends AbstractModel> implements Ini
         return model;
     }
 
-    public void setModel(M model) {
+    public AbstractController(M model) {
         this.model = model;
+        attachHandlers();
     }
-
 }
