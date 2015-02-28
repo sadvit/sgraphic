@@ -2,6 +2,8 @@ package com.sadvit.dialog;
 
 import com.sadvit.ui.Loader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
@@ -9,8 +11,18 @@ public abstract class AbstractDialog<T> extends Stage {
 
     private T controller;
 
-    public AbstractDialog(String viewName, Class<T> controllerClass) {
+    private String title;
+
+    private int width;
+
+    private int height;
+
+    public AbstractDialog(String viewName, Class<T> controllerClass, String title, int width, int height) {
         controller = Loader.load(viewName);
+        this.title = title;
+        this.width = width;
+        this.height = height;
+        initialize();
     }
 
     public abstract Node getRootView();
@@ -19,24 +31,17 @@ public abstract class AbstractDialog<T> extends Stage {
         return controller;
     }
 
+    public void showDialog() {
+        setResizable(false);
+        setTitle(title);
+        setScene(new Scene((Parent) getRootView(), width, height));
+        show();
+    }
+
+    public void hideDialog() {
+        hide();
+    }
+
+    protected abstract void initialize();
+
 }
-
-
-/*
-        try {
-
-            Parent root = Loader.load("MosaicDialogView.fxml");
-            textField = (TextField) root.lookup("#input");
-            Button buttonOk = (Button) root.lookup("#buttonOk");
-            buttonOk.setOnAction(event -> );
-
-
-            buttonCancel.setOnAction(buttonCancelHandler);
-            Stage stage = new Stage();
-            stage.setResizable(false);
-            stage.setTitle(dialogName);
-            stage.setScene(new Scene(root, 200, 100));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/

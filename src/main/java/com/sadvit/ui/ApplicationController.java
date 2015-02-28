@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 public class ApplicationController extends AbstractController<ApplicationModel> {
 
     public static final int INITIAL_WINDOW_SIZE = 400;
+    public static final int PANEL_SIZE = 54;
 
     @FXML
     private BorderPane root;
@@ -43,14 +44,14 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         drawArea.draw(getModel().getCurrentImage());
         primaryStage.setResizable(false);
         primaryStage.setWidth(getModel().getCurrentImage().getWidth());
-        primaryStage.setHeight(getModel().getCurrentImage().getHeight());
+        primaryStage.setHeight(getModel().getCurrentImage().getHeight() + PANEL_SIZE);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         drawArea.widthProperty().bind(pane.widthProperty());
         drawArea.heightProperty().bind(pane.heightProperty());
-        getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE);
+        getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE + PANEL_SIZE);
     }
 
     @Override
