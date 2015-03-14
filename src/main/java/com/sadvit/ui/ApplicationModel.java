@@ -1,5 +1,6 @@
 package com.sadvit.ui;
 
+import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleImage;
 import com.sadvit.image.SimpleImageUtils;
 import com.sadvit.mvc.AbstractModel;
@@ -38,6 +39,10 @@ public class ApplicationModel extends AbstractModel {
                 }
             }
         }
+    }
+
+    public void createLine(DrawLineEvent event) {
+
     }
 
     private Color randomColor() {

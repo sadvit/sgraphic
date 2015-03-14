@@ -19,6 +19,7 @@ public abstract class AbstractDialog<T> extends Stage {
 
     public AbstractDialog(String viewName, Class<T> controllerClass, String title, int width, int height) {
         controller = Loader.load(viewName);
+        //controller = Loader.get(viewName);
         this.title = title;
         this.width = width;
         this.height = height;

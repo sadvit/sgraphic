@@ -1,8 +1,8 @@
 package com.sadvit.ui;
 
 import com.sadvit.dialog.Dialogs;
+import com.sadvit.event.DrawLineEvent;
 import com.sadvit.event.DrawMosaicEvent;
-import com.sadvit.event.DrawMosaicHandler;
 import com.sadvit.mvc.AbstractController;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -56,12 +56,8 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
 
     @Override
     public void attachHandlers() {
-        registerHandler(new DrawMosaicHandler() {
-            @Override
-            public void handle(DrawMosaicEvent event) {
-                drawMosaicAction(event.getSize());
-            }
-        });
+        registerHandler(DrawMosaicEvent.class, event -> System.out.println("Mosaic event " + event.getSize()));
+        registerHandler(DrawLineEvent.class, event -> System.out.println("Line event" + event.getClass()));
     }
 
     public void onExitClick() {
@@ -95,13 +91,30 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         Dialogs.showMosaicDialog();
     }
 
-    private void drawMosaicAction(int size) {
+    private void drawMosaicEvent(int size) {
         getModel().createMosaicImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE, size);
+        refresh();
+    }
+
+    private void drawLineEvent(DrawLineEvent event) {
+        getModel().createLine(event);
         refresh();
     }
 
     public ApplicationController() {
         super(new ApplicationModel());
+    }
+
+    public void onLineClick() {
+        Dialogs.showLineDialog();
+    }
+
+    public void onCircleClick() {
+        Dialogs.showCircleDialog();
+    }
+
+    public void onCurvesClick() {
+    Dialogs.showCurvesDialog();
     }
 
 }

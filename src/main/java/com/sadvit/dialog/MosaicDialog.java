@@ -18,7 +18,7 @@ public class MosaicDialog extends AbstractDialog<MosaicDialogController> {
     protected void initialize() {
         getController().getButtonOk().setOnAction(event -> {
             int value = Integer.parseInt(getController().getInput().getText());
-            EventBus.getInstance().handleEvent(new DrawMosaicEvent(value));
+            EventBus.getInstance().fireEvent(new DrawMosaicEvent(value));
             hide();
         });
         getController().getButtonCancel().setOnAction(event -> hide());

@@ -1,8 +1,8 @@
 package com.sadvit.event;
 
-import com.sadvit.communication.MEvent;
+import com.sadvit.communication.Event;
 
-public class DrawMosaicEvent implements MEvent {
+public class DrawMosaicEvent implements Event {
 
     private int number;
 

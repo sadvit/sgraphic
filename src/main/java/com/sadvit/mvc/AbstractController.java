@@ -1,7 +1,7 @@
 package com.sadvit.mvc;
 
-import com.sadvit.communication.MEvent;
-import com.sadvit.communication.MHandler;
+import com.sadvit.communication.Event;
+import com.sadvit.communication.Handler;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
@@ -17,12 +17,16 @@ public abstract class AbstractController<M extends AbstractModel> implements Ini
 
     public abstract void refresh();
 
-    protected void registerHandler(MHandler<? extends MEvent> handler) {
-        getModel().getEventBus().registerHandler(handler);
+    protected void fireEvent(Event event) {
+        getModel().getEventBus().fireEvent(event);
     }
 
-    protected void unregisterHandler(MHandler<? extends MEvent> handler) {
-        getModel().getEventBus().unregisterHandler(handler);
+    protected <T extends Event> void registerHandler(Class<T> eventType, Handler<T> eventHandler) {
+        getModel().getEventBus().registerHandler(eventType, eventHandler);
+    }
+
+    protected void unregisterHandler(Class<? extends Event > eventType) {
+        getModel().getEventBus().unregisterHandler(eventType);
     }
 
     public M getModel() {

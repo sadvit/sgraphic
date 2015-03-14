@@ -1,11 +1,8 @@
 package com.sadvit.communication;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-/**
- * Одна в программе. Ссылку на этот обьект имеют все классы.
- */
 public class EventBus {
 
     //--------------------------------------------------------------------
@@ -19,25 +16,20 @@ public class EventBus {
 
     //--------------------------------------------------------------------
 
-    private List<MHandler<? extends MEvent>> handlers = new ArrayList<>();
+    private Map<Class<? extends Event>, Handler<? extends Event>> handlers = new HashMap<>();
 
-    @SuppressWarnings({"unchecked", "Convert2streamapi"})
-    public synchronized void handleEvent(MEvent event) {
-        for (MHandler handler: handlers) {
-            if (isCorrectHandler(handler, event)) handler.handle(event);
-        }
+    @SuppressWarnings("unchecked")
+    public synchronized <T extends Event> void fireEvent(T event) {
+        Handler<T> handler = (Handler<T>) handlers.get(event.getClass());
+        handler.handle(event);
     }
 
-    public synchronized void registerHandler(MHandler<? extends MEvent> handler) {
-        handlers.add(handler);
+    public synchronized <T extends Event> void registerHandler(Class<T> eventType, Handler<T> eventHandler) {
+        handlers.put(eventType, eventHandler);
     }
 
-    public synchronized void unregisterHandler(MHandler<? extends MEvent> handler) {
-        handlers.remove(handler);
-    }
-
-    private synchronized boolean isCorrectHandler(MHandler handler, MEvent event) {
-        return handler.getEventType().equals(event.getClass());
+    public synchronized <T extends Event> void unregisterHandler(Class<T> eventType) {
+        handlers.remove(eventType);
     }
 
 }

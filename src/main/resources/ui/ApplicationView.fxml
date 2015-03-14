@@ -16,6 +16,9 @@
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
                 <MenuItem onAction="#onMosaicClick" mnemonicParsing="false" text="Mosaic"/>
+                <MenuItem onAction="#onLineClick" mnemonicParsing="false" text="Line"/>
+                <MenuItem onAction="#onCircleClick" mnemonicParsing="false" text="Circle"/>
+                <MenuItem onAction="#onCurvesClick" mnemonicParsing="false" text="Curves"/>
             </Menu>
         </MenuBar>
     </top>

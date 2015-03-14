@@ -1,13 +1,13 @@
 package com.sadvit.mvc;
 
 
+import com.sadvit.communication.Event;
 import com.sadvit.communication.EventBus;
-import com.sadvit.communication.MEvent;
 
 public class AbstractModel {
 
-    public void fireEvent(MEvent event) {
-        EventBus.getInstance().handleEvent(event);
+    public void fireEvent(Event event) {
+        EventBus.getInstance().fireEvent(event);
     }
 
     public EventBus getEventBus() {
