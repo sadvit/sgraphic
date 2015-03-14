@@ -23,7 +23,7 @@
     </padding>
     <Button fx:id="buttonCancel" mnemonicParsing="false" text="Cancel" GridPane.halignment="CENTER"
             GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
-    <Button fx:id="buttonOk" mnemonicParsing="false" text="OK" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+    <Button fx:id="buttonDraw" mnemonicParsing="false" text="OK" GridPane.columnIndex="1" GridPane.halignment="CENTER"
             GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
     <Label prefHeight="25.0" prefWidth="44.0" text="Color:" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
     <ColorPicker GridPane.columnIndex="1"/>

@@ -2,16 +2,28 @@ package com.sadvit.dialog;
 
 public class Dialogs {
 
+    private static MosaicDialog mosaicDialog;
+
+    private static LineDialog lineDialog;
+
+    private static CircleDialog circleDialog;
+
     public static void showMosaicDialog() {
-        new MosaicDialog().showDialog();
+        if (mosaicDialog == null)
+            mosaicDialog = new MosaicDialog();
+        mosaicDialog.showDialog();
     }
 
     public static void showLineDialog() {
-        new LineDialog().showDialog();
+        if (lineDialog == null)
+            lineDialog = new LineDialog();
+        lineDialog.showDialog();
     }
 
     public static void showCircleDialog() {
-        new CircleDialog().showDialog();
+        if (circleDialog == null)
+            circleDialog = new CircleDialog();
+        circleDialog.showDialog();
     }
 
     public static void showCurvesDialog() {

@@ -42,7 +42,7 @@ public class ApplicationModel extends AbstractModel {
     }
 
     public void createLine(DrawLineEvent event) {
-
+        System.out.println("draw line");
     }
 
     private Color randomColor() {

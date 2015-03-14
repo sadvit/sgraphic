@@ -24,6 +24,6 @@
            GridPane.valignment="CENTER"/>
     <Button fx:id="buttonCancel" mnemonicParsing="false" text="Cancel" GridPane.halignment="CENTER"
             GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
-    <Button fx:id="buttonOk" mnemonicParsing="false" text="OK" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+    <Button fx:id="buttonDraw" onAction="#draw" mnemonicParsing="false" text="Draw" GridPane.columnIndex="1" GridPane.halignment="CENTER"
             GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
 </GridPane>

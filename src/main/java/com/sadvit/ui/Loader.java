@@ -4,14 +4,18 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 /**
- * Используется для загрузки View и Controller из FXML файлов, находящихся в папке recourses/ui
+ * Load and init all FXML files from recourses/ui
  */
 public class Loader {
 
-    public static final String FOLDER = "ui/";
+    private static final String FOLDER = "ui/";
 
     private static HashMap<String, Object> controllers = new HashMap<>();
 
@@ -19,11 +23,7 @@ public class Loader {
         init();
     }
 
-    /**
-     * TODO добавить загрузку всех контроллеров при инициализации приложения
-     * Возвращает ссылку на связанный контроллер.
-     */
-    public static <T> T load(String name) {
+    private static <T> T load(String name) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         try {
             fxmlLoader.load(Loader.class.getClassLoader().getResourceAsStream(FOLDER + name));
@@ -39,16 +39,23 @@ public class Loader {
         return (T) controllers.get(name);
     }
 
+    @SuppressWarnings("ConstantConditions")
     public static void init() {
-        File folder = new File(FOLDER);
-        System.out.println("fff " + folder.isFile());
-        System.out.println(folder.getName());
-        File[] files = folder.listFiles();
-        if (files != null)
-            for (File file : files) {
-                if (file.isFile())
-                    controllers.put(file.getName(), load(file.getName()));
+        try {
+            Enumeration<URL> resources = Loader.class.getClassLoader().getResources(FOLDER);
+            while (resources.hasMoreElements()) {
+                File folder = Paths.get(resources.nextElement().toURI()).toFile();
+                try {
+                    for (File file : folder.listFiles()) {
+                        controllers.put(file.getName(), load(file.getName()));
+                    }
+                } catch (Exception e) {
+                    System.err.println("FXML loading error");
+                }
             }
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -51,13 +51,13 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     public void initialize(URL location, ResourceBundle resources) {
         drawArea.widthProperty().bind(pane.widthProperty());
         drawArea.heightProperty().bind(pane.heightProperty());
-        getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE + PANEL_SIZE);
+        getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE);
     }
 
     @Override
     public void attachHandlers() {
-        registerHandler(DrawMosaicEvent.class, event -> System.out.println("Mosaic event " + event.getSize()));
-        registerHandler(DrawLineEvent.class, event -> System.out.println("Line event" + event.getClass()));
+        registerHandler(DrawMosaicEvent.class, this::drawMosaicEvent);
+        registerHandler(DrawLineEvent.class, this::drawLineEvent);
     }
 
     public void onExitClick() {
@@ -91,7 +91,8 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         Dialogs.showMosaicDialog();
     }
 
-    private void drawMosaicEvent(int size) {
+    private void drawMosaicEvent(DrawMosaicEvent event) {
+        int size = event.getSize();
         getModel().createMosaicImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE, size);
         refresh();
     }
@@ -114,7 +115,7 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     }
 
     public void onCurvesClick() {
-    Dialogs.showCurvesDialog();
+        Dialogs.showCurvesDialog();
     }
 
 }

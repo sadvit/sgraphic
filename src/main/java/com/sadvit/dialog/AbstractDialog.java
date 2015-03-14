@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public abstract class AbstractDialog<T> extends Stage {
+public abstract class AbstractDialog<T extends DialogController> extends Stage {
 
     private T controller;
 
@@ -17,16 +17,17 @@ public abstract class AbstractDialog<T> extends Stage {
 
     private int height;
 
-    public AbstractDialog(String viewName, Class<T> controllerClass, String title, int width, int height) {
-        controller = Loader.load(viewName);
-        //controller = Loader.get(viewName);
+    public AbstractDialog(String viewName, String title, int width, int height) {
+        controller = Loader.get(viewName);
         this.title = title;
         this.width = width;
         this.height = height;
         initialize();
     }
 
-    public abstract Node getRootView();
+    public Node getRootView() {
+        return getController().getRoot();
+    }
 
     protected T getController() {
         return controller;
@@ -35,14 +36,18 @@ public abstract class AbstractDialog<T> extends Stage {
     public void showDialog() {
         setResizable(false);
         setTitle(title);
-        setScene(new Scene((Parent) getRootView(), width, height));
+        if (getScene() == null)
+            setScene(new Scene((Parent) getRootView(), width, height));
         show();
+        sizeToScene();
     }
 
     public void hideDialog() {
         hide();
     }
 
-    protected abstract void initialize();
+    protected void initialize() {
+        controller.setCancelActionHandler(event -> hideDialog());
+    }
 
 }
