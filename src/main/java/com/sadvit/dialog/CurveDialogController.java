@@ -1,44 +1,40 @@
 package com.sadvit.dialog;
 
-import com.sadvit.communication.EventBus;
-import com.sadvit.event.DrawMosaicEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MosaicDialogController implements DialogController {
-
-    @FXML
-    private Button buttonDraw;
-
-    @FXML
-    private Button buttonCancel;
+public class CurveDialogController implements DialogController {
 
     @FXML
     private GridPane root;
 
     @FXML
-    private TextField input;
+    private Button buttonCancel;
 
-    public Button getButtonCancel() {
-        return buttonCancel;
-    }
+    @FXML
+    private Button buttonDraw;
 
+    @Override
     public Button getButtonDraw() {
         return buttonDraw;
     }
 
+    @Override
+    public Button getButtonCancel() {
+        return buttonCancel;
+    }
+
+    @Override
     public GridPane getRoot() {
         return root;
     }
 
     public void draw() {
-        int size = Integer.parseInt(input.getText());
-        EventBus.getInstance().fireEvent(new DrawMosaicEvent(size));
+
     }
 
     @Override

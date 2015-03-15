@@ -8,26 +8,40 @@ public class Dialogs {
 
     private static CircleDialog circleDialog;
 
+    private static CurveDialog curveDialog;
+
     public static void showMosaicDialog() {
         if (mosaicDialog == null)
             mosaicDialog = new MosaicDialog();
-        mosaicDialog.showDialog();
+        if (!mosaicDialog.isShowing())
+            mosaicDialog.showDialog();
     }
 
     public static void showLineDialog() {
         if (lineDialog == null)
             lineDialog = new LineDialog();
-        lineDialog.showDialog();
+        if (!lineDialog.isShowing())
+            lineDialog.showDialog();
+    }
+
+    public static LineDialog getLineDialog() {
+        if (lineDialog != null && lineDialog.isShowing())
+            return lineDialog;
+        return null;
     }
 
     public static void showCircleDialog() {
         if (circleDialog == null)
             circleDialog = new CircleDialog();
-        circleDialog.showDialog();
+        if (!circleDialog.isShowing())
+            circleDialog.showDialog();
     }
 
-    public static void showCurvesDialog() {
-
+    public static void showCurveDialog() {
+        if (curveDialog == null)
+            curveDialog = new CurveDialog();
+        if (!curveDialog.isShowing())
+            curveDialog.showDialog();
     }
 
 }

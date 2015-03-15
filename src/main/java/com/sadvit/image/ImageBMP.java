@@ -1,5 +1,6 @@
 package com.sadvit.image;
 
+import com.sadvit.math.Point;
 import javafx.scene.paint.Color;
 
 public class ImageBMP implements SimpleImage {
@@ -51,6 +52,16 @@ public class ImageBMP implements SimpleImage {
         pixelData[position] = toByte(color.getBlue());
         pixelData[position + 1] = toByte(color.getGreen());
         pixelData[position + 2] = toByte(color.getRed());
+    }
+
+    @Override
+    public Color getColor(Point point) {
+        return getColor(point.getX(), point.getY());
+    }
+
+    @Override
+    public void setColor(Point point, Color color) {
+        setColor(point.getX(), point.getY(), color);
     }
 
     private byte toByte(double component) {

@@ -1,6 +1,8 @@
 package com.sadvit.ui;
 
 import com.sadvit.dialog.Dialogs;
+import com.sadvit.event.DrawCircleEvent;
+import com.sadvit.event.DrawCurveEvent;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.event.DrawMosaicEvent;
 import com.sadvit.mvc.AbstractController;
@@ -58,6 +60,8 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     public void attachHandlers() {
         registerHandler(DrawMosaicEvent.class, this::drawMosaicEvent);
         registerHandler(DrawLineEvent.class, this::drawLineEvent);
+        registerHandler(DrawCircleEvent.class, this::drawCircleEvent);
+        registerHandler(DrawCurveEvent.class, this::drawCurveEvent);
     }
 
     public void onExitClick() {
@@ -102,6 +106,16 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         refresh();
     }
 
+    private void drawCircleEvent(DrawCircleEvent event) {
+        //getModel().createLine(event);
+        refresh();
+    }
+
+    private void drawCurveEvent(DrawCurveEvent event) {
+        //getModel().createLine(event);
+        refresh();
+    }
+
     public ApplicationController() {
         super(new ApplicationModel());
     }
@@ -115,7 +129,7 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     }
 
     public void onCurvesClick() {
-        Dialogs.showCurvesDialog();
+        Dialogs.showCurveDialog();
     }
 
 }

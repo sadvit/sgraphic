@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class CircleDialogController implements DialogController {
 
     @FXML
@@ -17,16 +20,25 @@ public class CircleDialogController implements DialogController {
 
     @Override
     public Button getButtonDraw() {
-        return null;
+        return buttonDraw;
     }
 
     @Override
     public Button getButtonCancel() {
-        return null;
+        return buttonCancel;
     }
 
     public GridPane getRoot() {
         return root;
+    }
+
+    public void draw() {
+
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 }
