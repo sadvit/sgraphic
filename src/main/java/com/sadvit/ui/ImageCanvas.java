@@ -3,7 +3,7 @@ package com.sadvit.ui;
 import com.sadvit.communication.EventBus;
 import com.sadvit.dialog.Dialogs;
 import com.sadvit.event.DrawLineEvent;
-import com.sadvit.image.SimpleImage;
+import com.sadvit.image.SimpleCanvas;
 import com.sadvit.math.Point;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 public class ImageCanvas extends Canvas {
 
-    private SimpleImage image;
+    private SimpleCanvas image;
 
     private Point click;
 
@@ -51,8 +51,8 @@ public class ImageCanvas extends Canvas {
      * Draw and save simple image
      * hack :(
      */
-    public void draw(SimpleImage simpleImage) {
-        if (simpleImage != null) image = simpleImage;
+    public void draw(SimpleCanvas simpleCanvas) {
+        if (simpleCanvas != null) image = simpleCanvas;
         redraw();
     }
 

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class SimpleImageUtils {
 
-    public static SimpleImage read(String path) {
+    public static SimpleCanvas read(String path) {
         try {
             DataInputStreamLittleEndian stream = new DataInputStreamLittleEndian(path);
             ImageBMP imageBMP = new ImageBMPReader(stream).read();
@@ -22,10 +22,10 @@ public class SimpleImageUtils {
         return null;
     }
 
-    public static void write(SimpleImage simpleImage, String path) {
-        if (simpleImage instanceof ImageBMP) {
+    public static void write(SimpleCanvas simpleCanvas, String path) {
+        if (simpleCanvas instanceof ImageBMP) {
             try {
-                ImageBMP image = (ImageBMP) simpleImage;
+                ImageBMP image = (ImageBMP) simpleCanvas;
                 DataOutputStreamLittleEndian stream = new DataOutputStreamLittleEndian(path);
                 new ImageBMPWriter(stream).write(image);
                 stream.close();
@@ -40,7 +40,7 @@ public class SimpleImageUtils {
     /**
      * Create new SimpleImage instance, based on ImageBMP class with white background
      */
-    public static SimpleImage create(int width, int height) {
+    public static SimpleCanvas create(int width, int height) {
         ImageBMP imageBMP = new ImageBMP();
         BitmapFileHeader bitmapFileHeader = new BitmapFileHeader();
         bitmapFileHeader.setSignature("BM");

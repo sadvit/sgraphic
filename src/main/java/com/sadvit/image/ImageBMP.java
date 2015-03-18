@@ -3,7 +3,7 @@ package com.sadvit.image;
 import com.sadvit.math.Point;
 import javafx.scene.paint.Color;
 
-public class ImageBMP implements SimpleImage {
+public class ImageBMP implements SimpleCanvas {
 
     public BitmapFileHeader fileHeader;
     public BitmapInfo infoHeader;

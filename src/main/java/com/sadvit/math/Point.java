@@ -37,4 +37,9 @@ public class Point {
                 ", y=" + y +
                 '}';
     }
+
+    public int length(Point p) {
+        return Math.max(Math.abs(x - p.getX()), Math.abs(y - p.getY()));
+    }
+
 }

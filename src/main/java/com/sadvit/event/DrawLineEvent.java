@@ -3,8 +3,8 @@ package com.sadvit.event;
 
 import com.sadvit.communication.Event;
 import com.sadvit.draw.BoundType;
-import com.sadvit.draw.BrushType;
-import com.sadvit.draw.LineType;
+import com.sadvit.draw.brush.BrushType;
+import com.sadvit.draw.trafaret.TrafaretType;
 import com.sadvit.draw.MethodType;
 import com.sadvit.math.Point;
 import javafx.scene.paint.Color;
@@ -21,7 +21,7 @@ public class DrawLineEvent implements Event {
 
     private Color colorEnd;
 
-    private LineType lineType;
+    private TrafaretType trafaretType;
 
     private BoundType boundType;
 
@@ -69,12 +69,12 @@ public class DrawLineEvent implements Event {
         this.colorEnd = colorEnd;
     }
 
-    public LineType getLineType() {
-        return lineType;
+    public TrafaretType getTrafaretType() {
+        return trafaretType;
     }
 
-    public void setLineType(LineType lineType) {
-        this.lineType = lineType;
+    public void setTrafaretType(TrafaretType trafaretType) {
+        this.trafaretType = trafaretType;
     }
 
     public BoundType getBoundType() {
@@ -113,7 +113,7 @@ public class DrawLineEvent implements Event {
                 ", p2=" + p2 +
                 ", colorStart=" + colorStart +
                 ", colorEnd=" + colorEnd +
-                ", lineType=" + lineType +
+                ", trafaretType=" + trafaretType +
                 ", boundType=" + boundType +
                 ", brushType=" + brushType +
                 ", brushSize=" + brushSize +

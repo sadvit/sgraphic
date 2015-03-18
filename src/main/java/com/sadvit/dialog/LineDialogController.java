@@ -2,8 +2,8 @@ package com.sadvit.dialog;
 
 import com.sadvit.communication.EventBus;
 import com.sadvit.draw.BoundType;
-import com.sadvit.draw.BrushType;
-import com.sadvit.draw.LineType;
+import com.sadvit.draw.brush.BrushType;
+import com.sadvit.draw.trafaret.TrafaretType;
 import com.sadvit.draw.MethodType;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.math.Point;
@@ -36,7 +36,7 @@ public class LineDialogController implements DialogController {
     private RadioButton bound8xRadio;
 
     @FXML
-    private ComboBox<LineType> typeLineBox;
+    private ComboBox<TrafaretType> typeLineBox;
 
     @FXML
     private TextField p1xTextField;
@@ -99,11 +99,12 @@ public class LineDialogController implements DialogController {
         Color colorEnd = colorPickerEnd.getValue();
         event.setColorStart(colorStart);
         event.setColorEnd(colorEnd);
-        event.setLineType(typeLineBox.getValue()); // TODO not null
+        event.setTrafaretType(typeLineBox.getValue()); // TODO not null
         if (bound4xRadio.isSelected()) event.setBoundType(BoundType.X4);
         if (bound8xRadio.isSelected()) event.setBoundType(BoundType.X8);
         if (squareFormButton.isSelected()) event.setBrushType(BrushType.SQUARE);
         if (circleFormButton.isSelected()) event.setBrushType(BrushType.CIRCLE);
+        System.out.println((int)brushSizeSlider.getValue());
         event.setBrushSize((int)brushSizeSlider.getValue());
         return event;
     }
@@ -115,11 +116,11 @@ public class LineDialogController implements DialogController {
         addNumericChecker(p2xTextField);
         addNumericChecker(p2yTextField);
         typeLineBox.setItems(FXCollections.observableArrayList(
-                LineType.DASH_DOTTED,
-                LineType.DASHED,
-                LineType.SOLID
+                TrafaretType.DASH_DOTTED,
+                TrafaretType.DASHED,
+                TrafaretType.SOLID
         ));
-        typeLineBox.setValue(LineType.SOLID);
+        typeLineBox.setValue(TrafaretType.SOLID);
         setStartPoint(new Point(10, 10));
         setEndPoint(new Point(20, 20));
         methodParametric.setSelected(true);
