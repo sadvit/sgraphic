@@ -3,7 +3,7 @@ package com.sadvit.dialog;
 import com.sadvit.communication.EventBus;
 import com.sadvit.draw.BoundType;
 import com.sadvit.draw.brush.BrushType;
-import com.sadvit.draw.trafaret.TrafaretType;
+import com.sadvit.draw.template.TrafaretType;
 import com.sadvit.draw.MethodType;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.math.Point;

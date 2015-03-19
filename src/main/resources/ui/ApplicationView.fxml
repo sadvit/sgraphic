@@ -10,6 +10,7 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <Menu mnemonicParsing="false" text="File">
+                <MenuItem onAction="#onNewClick" mnemonicParsing="false" text="New"/>
                 <MenuItem onAction="#onOpenClick" mnemonicParsing="false" text="Open"/>
                 <MenuItem onAction="#onSaveClick" mnemonicParsing="false" text="Save"/>
                 <MenuItem onAction="#onExitClick" mnemonicParsing="false" text="Exit"/>

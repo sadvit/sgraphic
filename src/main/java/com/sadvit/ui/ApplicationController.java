@@ -132,4 +132,8 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         Dialogs.showCurveDialog();
     }
 
+    public void onNewClick() {
+        getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE);
+        refresh();
+    }
 }

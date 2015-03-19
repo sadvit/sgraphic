@@ -4,7 +4,7 @@ package com.sadvit.event;
 import com.sadvit.communication.Event;
 import com.sadvit.draw.BoundType;
 import com.sadvit.draw.brush.BrushType;
-import com.sadvit.draw.trafaret.TrafaretType;
+import com.sadvit.draw.template.TrafaretType;
 import com.sadvit.draw.MethodType;
 import com.sadvit.math.Point;
 import javafx.scene.paint.Color;

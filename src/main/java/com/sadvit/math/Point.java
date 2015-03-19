@@ -30,6 +30,11 @@ public class Point {
         this.y = y;
     }
 
+    public Point(double x, double y) {
+        this.x = (int) x;
+        this.y = (int) y;
+    }
+
     @Override
     public String toString() {
         return "Point{" +
