@@ -6,16 +6,16 @@ import com.sadvit.draw.BoundType;
 import com.sadvit.draw.brush.BrushType;
 import com.sadvit.draw.template.TrafaretType;
 import com.sadvit.draw.MethodType;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
 public class DrawLineEvent implements Event {
 
     private MethodType methodType;
 
-    private Point p1;
+    private Point2 p1;
 
-    private Point p2;
+    private Point2 p2;
 
     private Color colorStart;
 
@@ -37,19 +37,19 @@ public class DrawLineEvent implements Event {
         this.methodType = methodType;
     }
 
-    public Point getP1() {
+    public Point2 getP1() {
         return p1;
     }
 
-    public void setP1(Point p1) {
+    public void setP1(Point2 p1) {
         this.p1 = p1;
     }
 
-    public Point getP2() {
+    public Point2 getP2() {
         return p2;
     }
 
-    public void setP2(Point p2) {
+    public void setP2(Point2 p2) {
         this.p2 = p2;
     }
 
@@ -119,4 +119,19 @@ public class DrawLineEvent implements Event {
                 ", brushSize=" + brushSize +
                 '}';
     }
+
+    public static DrawLineEvent simpleEvent(Point2 p1, Point2 p2, MethodType method) {
+        DrawLineEvent event = new DrawLineEvent();
+        event.setMethodType(method);
+        event.setP1(p1);
+        event.setP2(p2);
+        event.setColorStart(Color.BLACK);
+        event.setColorEnd(Color.BLACK);
+        event.setTrafaretType(TrafaretType.SOLID);
+        event.setBoundType(BoundType.X8);
+        event.setBrushType(BrushType.CIRCLE);
+        event.setBrushSize(1);
+        return event;
+    }
+
 }

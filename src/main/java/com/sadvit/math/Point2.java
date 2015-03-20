@@ -1,6 +1,6 @@
 package com.sadvit.math;
 
-public class Point {
+public class Point2 {
 
     private int x;
 
@@ -22,15 +22,15 @@ public class Point {
         this.y = y;
     }
 
-    public Point() {
+    public Point2() {
     }
 
-    public Point(int x, int y) {
+    public Point2(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Point(double x, double y) {
+    public Point2(double x, double y) {
         this.x = (int) x;
         this.y = (int) y;
     }
@@ -43,7 +43,7 @@ public class Point {
                 '}';
     }
 
-    public int length(Point p) {
+    public int length(Point2 p) {
         return Math.max(Math.abs(x - p.getX()), Math.abs(y - p.getY()));
     }
 

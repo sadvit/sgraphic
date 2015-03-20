@@ -2,7 +2,7 @@ package com.sadvit.draw.template;
 
 import com.sadvit.draw.brush.Brush;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 
 /**
  * Специальный обьект - декоратор, который
@@ -22,7 +22,7 @@ public abstract class BrushTemplate implements Brush {
     }
 
     @Override
-    public void touch(Point point, SimpleCanvas canvas) {
+    public void touch(Point2 point, SimpleCanvas canvas) {
         if (isNextEnabled())
             brush.touch(point, canvas);
     }

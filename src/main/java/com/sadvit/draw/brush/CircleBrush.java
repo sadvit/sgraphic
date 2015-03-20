@@ -2,7 +2,7 @@ package com.sadvit.draw.brush;
 
 import com.sadvit.draw.color.PaintBucket;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
 public class CircleBrush extends AbstractBrush {
@@ -20,7 +20,7 @@ public class CircleBrush extends AbstractBrush {
     }
 
     @Override
-    public void touch(Point point, SimpleCanvas canvas) {
+    public void touch(Point2 point, SimpleCanvas canvas) {
         int r = getSize();
         int x0 = point.getX();
         int y0 = point.getY();

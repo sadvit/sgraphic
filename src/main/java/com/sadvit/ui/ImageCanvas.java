@@ -4,7 +4,7 @@ import com.sadvit.communication.EventBus;
 import com.sadvit.dialog.Dialogs;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -13,7 +13,7 @@ public class ImageCanvas extends Canvas {
 
     private SimpleCanvas image;
 
-    private Point click;
+    private Point2 click;
 
     private boolean firstClick = true;
 
@@ -23,10 +23,10 @@ public class ImageCanvas extends Canvas {
         addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (firstClick) {
                 firstClick = false;
-                click = new Point((int)event.getX(), (int)event.getY());
+                click = new Point2((int)event.getX(), (int)event.getY());
             } else {
                 firstClick = true;
-                Point point = new Point((int)event.getX(), (int)event.getY());
+                Point2 point = new Point2((int)event.getX(), (int)event.getY());
                 if (Dialogs.getLineDialog() != null) {
                     DrawLineEvent current = Dialogs.getLineDialog().getEvent();
                     current.setP1(click);

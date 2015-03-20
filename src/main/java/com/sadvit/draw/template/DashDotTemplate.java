@@ -2,18 +2,7 @@ package com.sadvit.draw.template;
 
 import com.sadvit.draw.brush.Brush;
 
-// TODO ПЕРЕДЕЛАТЬ ЭТОТ ТРАФАРЕТ И ВООБЩЕ ПЕРЕСМОТРЕТЬ РЕАЛИЗАЦИЮ ВСЕХ ТРАФАРЕТОВ.
 public class DashDotTemplate extends BrushTemplate {
-
-    private int countDown;
-
-    private int countUp;
-
-    private int length = getSize() * 5;
-
-    private boolean isDown = true;
-
-    private boolean isPoint;
 
     public DashDotTemplate(Brush brush) {
         super(brush);

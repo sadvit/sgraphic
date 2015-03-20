@@ -1,16 +1,47 @@
 package com.sadvit.image;
 
+import com.sadvit.draw.MethodType;
+import com.sadvit.draw.drawer.Line8BrezenhamDrawer;
+import com.sadvit.draw.drawer.Line8ParametricDrawer;
+import com.sadvit.event.DrawLineEvent;
 import com.sadvit.io.reader.ImageBMPReader;
+import com.sadvit.io.reader.WavefrontReader;
 import com.sadvit.io.stream.DataInputStreamLittleEndian;
 import com.sadvit.io.stream.DataOutputStreamLittleEndian;
 import com.sadvit.io.writer.ImageBMPWriter;
+import com.sadvit.math.Point2;
+import com.sadvit.math.PointAdaptor;
+import com.sadvit.math.Triangle;
+import com.sadvit.ui.ApplicationController;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
+import java.util.List;
 
 public class SimpleImageUtils {
 
-    public static SimpleCanvas read(String path) {
+    public static SimpleCanvas readOBJ(String path, MethodType methodType) {
+        SimpleCanvas simpleCanvas = create(ApplicationController.INITIAL_WINDOW_SIZE, ApplicationController.INITIAL_WINDOW_SIZE);
+        List<Triangle> triangles = WavefrontReader.readTriangles(path);
+        for (Triangle triangle : triangles) {
+            Point2 p1 = new PointAdaptor(triangle.getP1()).getPoint();
+            Point2 p2 = new PointAdaptor(triangle.getP2()).getPoint();
+            Point2 p3 = new PointAdaptor(triangle.getP3()).getPoint();
+            if (methodType.equals(MethodType.BRESENHAM)) {
+                new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p1, p2, MethodType.BRESENHAM)).draw(simpleCanvas);
+                new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p2, p3, MethodType.BRESENHAM)).draw(simpleCanvas);
+                new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p1, p3, MethodType.BRESENHAM)).draw(simpleCanvas);
+            }
+            if (methodType.equals(MethodType.PARAMETRIC)) {
+                new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p1, p2, MethodType.PARAMETRIC)).draw(simpleCanvas);
+                new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p2, p3, MethodType.PARAMETRIC)).draw(simpleCanvas);
+                new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p1, p3, MethodType.PARAMETRIC)).draw(simpleCanvas);
+            }
+        }
+        return simpleCanvas;
+    }
+
+    public static SimpleCanvas readBMP(String path) {
         try {
             DataInputStreamLittleEndian stream = new DataInputStreamLittleEndian(path);
             ImageBMP imageBMP = new ImageBMPReader(stream).read();

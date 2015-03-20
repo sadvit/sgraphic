@@ -2,7 +2,7 @@ package com.sadvit.draw.drawer;
 
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 
 public class Line4BrezenhamDrawer extends LineDrawer {
 
@@ -34,7 +34,7 @@ public class Line4BrezenhamDrawer extends LineDrawer {
                 else y = y + sy;
                 e -= 2 * dx;
             }
-            getBrush().touch(new Point(x, y), canvas);
+            getBrush().touch(new Point2(x, y), canvas);
         }
     }
 }

@@ -2,13 +2,13 @@ package com.sadvit.draw.brush;
 
 import com.sadvit.draw.color.PaintBucket;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
 public class SquareBrush extends AbstractBrush {
 
     @Override
-    public void touch(Point point, SimpleCanvas canvas) {
+    public void touch(Point2 point, SimpleCanvas canvas) {
         Color color = getNextColor();
         int size = getSize();
         int x = point.getX();

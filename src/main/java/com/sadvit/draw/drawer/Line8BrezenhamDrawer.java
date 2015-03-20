@@ -2,7 +2,7 @@ package com.sadvit.draw.drawer;
 
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 
 @SuppressWarnings("ConstantConditions")
 public class Line8BrezenhamDrawer extends LineDrawer {
@@ -33,7 +33,7 @@ public class Line8BrezenhamDrawer extends LineDrawer {
         }
         int numerator = longest >> 1;
         for (int i = 0; i <= longest; i++) {
-            getBrush().touch(new Point(x1, y1), canvas);
+            getBrush().touch(new Point2(x1, y1), canvas);
             numerator += shortest;
             if (!(numerator < longest)) {
                 numerator -= longest;

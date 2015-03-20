@@ -1,5 +1,6 @@
 package com.sadvit.ui;
 
+import com.sadvit.draw.MethodType;
 import com.sadvit.draw.drawer.Drawers;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
@@ -15,8 +16,12 @@ public class ApplicationModel extends AbstractModel {
         return currentImage;
     }
 
-    public void openImage(String path) {
-        currentImage = SimpleImageUtils.read(path);
+    public void openBMP(String path) {
+        currentImage = SimpleImageUtils.readBMP(path);
+    }
+
+    public void openOBJ(String path) {
+        currentImage = SimpleImageUtils.readOBJ(path, MethodType.PARAMETRIC);
     }
 
     public void saveImage(String path) {

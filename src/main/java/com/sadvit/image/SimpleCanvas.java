@@ -1,6 +1,6 @@
 package com.sadvit.image;
 
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
 /**
@@ -12,9 +12,9 @@ public interface SimpleCanvas {
 
     public void setColor(int x, int y, Color color);
 
-    public Color getColor(Point point);
+    public Color getColor(Point2 point);
 
-    public void setColor(Point point, Color color);
+    public void setColor(Point2 point, Color color);
 
     public int getWidth();
 

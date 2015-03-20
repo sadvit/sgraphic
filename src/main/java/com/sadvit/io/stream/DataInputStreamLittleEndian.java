@@ -49,7 +49,7 @@ public class DataInputStreamLittleEndian {
         }
     }
 
-    // read from stream byte array
+    // readBMP from stream byte array
     public void read(byte[] bytes) throws IOException {
         int off = 0;
         while (off < bytes.length) {

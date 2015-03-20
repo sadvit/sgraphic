@@ -1,6 +1,6 @@
 package com.sadvit.image;
 
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
 public class ImageBMP implements SimpleCanvas {
@@ -55,12 +55,12 @@ public class ImageBMP implements SimpleCanvas {
     }
 
     @Override
-    public Color getColor(Point point) {
+    public Color getColor(Point2 point) {
         return getColor(point.getX(), point.getY());
     }
 
     @Override
-    public void setColor(Point point, Color color) {
+    public void setColor(Point2 point, Color color) {
         setColor(point.getX(), point.getY(), color);
     }
 

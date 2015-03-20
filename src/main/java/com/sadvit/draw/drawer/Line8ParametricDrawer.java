@@ -2,7 +2,7 @@ package com.sadvit.draw.drawer;
 
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 
 public class Line8ParametricDrawer extends LineDrawer {
 
@@ -19,7 +19,7 @@ public class Line8ParametricDrawer extends LineDrawer {
         for (int i = 0; i < n; i++) {
             xi += dx;
             yi += dy;
-            getBrush().touch(new Point((int)xi, (int)yi), canvas);
+            getBrush().touch(new Point2((int)xi, (int)yi), canvas);
         }
 
     }

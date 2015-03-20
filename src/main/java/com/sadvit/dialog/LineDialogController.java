@@ -6,7 +6,7 @@ import com.sadvit.draw.brush.BrushType;
 import com.sadvit.draw.template.TrafaretType;
 import com.sadvit.draw.MethodType;
 import com.sadvit.event.DrawLineEvent;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -121,8 +121,8 @@ public class LineDialogController implements DialogController {
                 TrafaretType.SOLID
         ));
         typeLineBox.setValue(TrafaretType.SOLID);
-        setStartPoint(new Point(10, 10));
-        setEndPoint(new Point(20, 20));
+        setStartPoint(new Point2(10, 10));
+        setEndPoint(new Point2(20, 20));
         methodParametric.setSelected(true);
         colorPickerStart.setValue(Color.BLACK);
         colorPickerEnd.setValue(Color.BLACK);
@@ -157,24 +157,24 @@ public class LineDialogController implements DialogController {
         return Integer.parseInt(textField.getText());
     }
 
-    private Point getPoint(TextField xField, TextField yField) {
-        return new Point(getInteger(xField), getInteger(yField));
+    private Point2 getPoint(TextField xField, TextField yField) {
+        return new Point2(getInteger(xField), getInteger(yField));
     }
 
-    private Point getStartPoint() {
+    private Point2 getStartPoint() {
         return getPoint(p1xTextField, p1yTextField);
     }
 
-    private Point getEndPoint() {
+    private Point2 getEndPoint() {
         return getPoint(p2xTextField, p2yTextField);
     }
 
-    private void setStartPoint(Point point) {
+    private void setStartPoint(Point2 point) {
         p1xTextField.setText(Integer.toString(point.getX()));
         p1yTextField.setText(Integer.toString(point.getY()));
     }
 
-    private void setEndPoint(Point point) {
+    private void setEndPoint(Point2 point) {
         p2xTextField.setText(Integer.toString(point.getX()));
         p2yTextField.setText(Integer.toString(point.getY()));
     }

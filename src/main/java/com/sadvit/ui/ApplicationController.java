@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 public class ApplicationController extends AbstractController<ApplicationModel> {
 
-    public static final int INITIAL_WINDOW_SIZE = 400;
+    public static final int INITIAL_WINDOW_SIZE = 600;
     public static final int PANEL_SIZE = 54;
 
     @FXML
@@ -81,13 +81,25 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
 
     public void onOpenClick() {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp");
-        fileChooser.getExtensionFilters().add(extFilter);
-        fileChooser.setTitle("Open BMP image");
+        FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("BMP files (*.bmp)", "*.bmp");
+        FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("OBJ files (*.obj)", "*.obj");
+        fileChooser.getExtensionFilters().add(extFilter1);
+        fileChooser.getExtensionFilters().add(extFilter2);
+        fileChooser.setTitle("Open BMP or OBJ image");
         File file = fileChooser.showOpenDialog(primaryStage);
         if (file != null) {
-            getModel().openImage(file.getAbsolutePath());
-            refresh();
+            switch (file.getName().split("\\.")[1]) {
+                case "bmp": {
+                    getModel().openBMP(file.getAbsolutePath());
+                    refresh();
+                    break;
+                }
+                case "obj": {
+                    getModel().openOBJ(file.getAbsolutePath());
+                    refresh();
+                    break;
+                }
+            }
         }
     }
 

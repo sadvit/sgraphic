@@ -1,7 +1,7 @@
 package com.sadvit.draw.brush;
 
 import com.sadvit.image.SimpleCanvas;
-import com.sadvit.math.Point;
+import com.sadvit.math.Point2;
 
 /**
  * Представляет собой кисть. Кисть берет цвет у ColorProvider-a, определяет - не пуста ли текущая точка у
@@ -15,7 +15,7 @@ public interface Brush {
      * @param point точка касания
      * @param canvas холст для рисования
      */
-    public void touch(Point point, SimpleCanvas canvas);
+    public void touch(Point2 point, SimpleCanvas canvas);
 
     public int getSize();
 
