@@ -35,7 +35,13 @@ public class Drawers {
         }
     }
 
-    public static Drawer circle(DrawCircleEvent event, SimpleCanvas image) {
+    public static Drawer circle(DrawCircleEvent event) {
+        switch (event.getMethodType()) {
+            case PARAMETRIC:
+                return new CircleParametricDrawer(event);
+            case BRESENHAM:
+                return new CircleBrezenhamDrawer(event);
+        }
         return null;
     }
 

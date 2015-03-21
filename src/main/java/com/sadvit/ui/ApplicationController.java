@@ -119,7 +119,8 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     }
 
     private void drawCircleEvent(DrawCircleEvent event) {
-        //getModel().createLine(event);
+        System.out.println("UNFIRE!");
+        getModel().createCircle(event);
         refresh();
     }
 

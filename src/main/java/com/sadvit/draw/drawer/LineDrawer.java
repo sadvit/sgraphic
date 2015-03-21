@@ -1,5 +1,6 @@
 package com.sadvit.draw.drawer;
 
+import com.sadvit.draw.BoundType;
 import com.sadvit.draw.brush.Brush;
 import com.sadvit.draw.brush.BrushFactory;
 import com.sadvit.draw.color.ColorAdaptor;
@@ -33,11 +34,11 @@ public abstract class LineDrawer implements Drawer {
         if (event.getColorStart().equals(event.getColorEnd())) {
             paintBucket = new ColorAdaptor(event.getColorStart());
         } else {
-            int lenght = event.getP1().length(event.getP2()) / (event.getBrushSize() - 1); // TODO переделать вычисления...
+            int k = event.getBoundType() == BoundType.X8 ? 1 : 2;
+            int lenght = (event.getP1().length(event.getP2())) * k; // / (event.getBrushSize() * (1.5 - k)))
             paintBucket = new ColorInterpolable(event.getColorStart(), event.getColorEnd(), lenght);
         }
         brush = BrushFactory.getBrush(event.getBrushType(), paintBucket, event.getBrushSize());
-        // TODO переосмыслить создание трафарета
         switch (event.getTrafaretType()) {
             case SOLID:
                 break;

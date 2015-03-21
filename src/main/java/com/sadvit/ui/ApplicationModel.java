@@ -2,6 +2,7 @@ package com.sadvit.ui;
 
 import com.sadvit.draw.MethodType;
 import com.sadvit.draw.drawer.Drawers;
+import com.sadvit.event.DrawCircleEvent;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.image.SimpleImageUtils;
@@ -21,7 +22,7 @@ public class ApplicationModel extends AbstractModel {
     }
 
     public void openOBJ(String path) {
-        currentImage = SimpleImageUtils.readOBJ(path, MethodType.PARAMETRIC);
+        currentImage = SimpleImageUtils.readOBJ(path, MethodType.BRESENHAM);
     }
 
     public void saveImage(String path) {
@@ -49,6 +50,10 @@ public class ApplicationModel extends AbstractModel {
 
     public void createLine(DrawLineEvent event) {
         Drawers.line(event).draw(currentImage);
+    }
+
+    public void createCircle(DrawCircleEvent event) {
+        Drawers.circle(event).draw(currentImage);
     }
 
     private Color randomColor() {

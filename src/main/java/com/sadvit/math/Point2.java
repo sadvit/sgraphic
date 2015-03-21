@@ -31,8 +31,8 @@ public class Point2 {
     }
 
     public Point2(double x, double y) {
-        this.x = (int) x;
-        this.y = (int) y;
+        this.x = (int) Math.round(x);
+        this.y = (int) Math.round(y);
     }
 
     @Override

@@ -23,6 +23,8 @@ public class SimpleImageUtils {
     public static SimpleCanvas readOBJ(String path, MethodType methodType) {
         SimpleCanvas simpleCanvas = create(ApplicationController.INITIAL_WINDOW_SIZE, ApplicationController.INITIAL_WINDOW_SIZE);
         List<Triangle> triangles = WavefrontReader.readTriangles(path);
+        long start = System.nanoTime();
+        System.out.println("start: " + start);
         for (Triangle triangle : triangles) {
             Point2 p1 = new PointAdaptor(triangle.getP1()).getPoint();
             Point2 p2 = new PointAdaptor(triangle.getP2()).getPoint();
@@ -38,6 +40,7 @@ public class SimpleImageUtils {
                 new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p1, p3, MethodType.PARAMETRIC)).draw(simpleCanvas);
             }
         }
+        System.out.println("diff: " + (System.nanoTime() - start));
         return simpleCanvas;
     }
 
