@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -15,6 +16,9 @@
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="72.0" minHeight="0.0" prefHeight="33.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
     </rowConstraints>
     <padding>
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -23,9 +27,9 @@
        <Button fx:id="buttonCancel" mnemonicParsing="false" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
        <Button fx:id="buttonDraw" mnemonicParsing="false" onAction="#draw" text="Draw" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
        <Label prefHeight="25.0" prefWidth="44.0" text="Color:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-       <ColorPicker prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
+       <ColorPicker fx:id="colorPicker" prefHeight="25.0" prefWidth="150.0" GridPane.columnIndex="1" />
        <Label prefHeight="25.0" prefWidth="83.0" text="Curve type:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-       <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+       <ComboBox fx:id="curveTypeBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
        <Label prefHeight="25.0" prefWidth="93.0" text="Brush form:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
        <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
            <fx:define>
@@ -45,6 +49,6 @@
            </children>
        </FlowPane>
        <Label prefHeight="25.0" prefWidth="93.0" text="Brush size:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-       <Slider GridPane.columnIndex="1" GridPane.rowIndex="3" />
+       <Slider fx:id="brushSizeSlider" max="10" min="1" GridPane.columnIndex="1" GridPane.rowIndex="3" />
    </children>
 </GridPane>

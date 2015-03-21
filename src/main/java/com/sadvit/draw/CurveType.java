@@ -1,7 +1,7 @@
 package com.sadvit.draw;
 
-public class CurveType {
+public enum CurveType {
 
-    
+    BEZIER, HERMITE, NURBS, BSPLINE
 
 }
