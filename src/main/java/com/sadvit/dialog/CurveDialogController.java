@@ -2,12 +2,19 @@ package com.sadvit.dialog;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class CurveDialogController implements DialogController {
+
+    @FXML
+    private RadioButton circleFormButton;
+
+    @FXML
+    private RadioButton squareFormButton;
 
     @FXML
     private GridPane root;
