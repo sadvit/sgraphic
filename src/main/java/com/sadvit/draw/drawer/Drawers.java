@@ -3,7 +3,6 @@ package com.sadvit.draw.drawer;
 import com.sadvit.event.DrawCircleEvent;
 import com.sadvit.event.DrawCurveEvent;
 import com.sadvit.event.DrawLineEvent;
-import com.sadvit.image.SimpleCanvas;
 
 public class Drawers {
 
@@ -45,8 +44,17 @@ public class Drawers {
         return null;
     }
 
-    public static Drawer curve(DrawCurveEvent event, SimpleCanvas image) {
-        return null;
+    public static Drawer curve(DrawCurveEvent event) {
+        switch (event.getCurveType()) {
+            case BEZIER:
+                return new BezierCurveDrawer(event);
+            case HERMITE:
+                return new HermitCurveDrawer(event);
+            case BSPLINE:
+                return new BSplineCurveDrawer(event);
+            default:
+                return null;
+        }
     }
 
 }

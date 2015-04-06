@@ -44,4 +44,10 @@ public class Dialogs {
             curveDialog.showDialog();
     }
 
+    public static CurveDialog getCurveDialog() {
+        if (curveDialog != null && curveDialog.isShowing())
+            return curveDialog;
+        return null;
+    }
+
 }

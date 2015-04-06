@@ -1,5 +1,6 @@
 package com.sadvit.draw.drawer;
 
+import com.sadvit.draw.brush.Brush;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.math.Point2;
@@ -8,6 +9,10 @@ public class Line8ParametricDrawer extends LineDrawer {
 
     public Line8ParametricDrawer(DrawLineEvent event) {
         super(event);
+    }
+
+    public Line8ParametricDrawer(Point2 point1, Point2 point2, Brush brush) {
+        super(point1, point2, brush);
     }
 
     @Override
@@ -21,7 +26,6 @@ public class Line8ParametricDrawer extends LineDrawer {
             yi += dy;
             getBrush().touch(new Point2((int)xi, (int)yi), canvas);
         }
-
     }
 
 }

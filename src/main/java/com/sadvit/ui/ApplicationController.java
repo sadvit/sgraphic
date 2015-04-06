@@ -125,7 +125,7 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     }
 
     private void drawCurveEvent(DrawCurveEvent event) {
-        //getModel().createLine(event);
+        getModel().createCurve(event);
         refresh();
     }
 

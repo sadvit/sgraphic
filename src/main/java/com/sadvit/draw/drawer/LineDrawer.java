@@ -9,6 +9,7 @@ import com.sadvit.draw.color.PaintBucket;
 import com.sadvit.draw.template.DashDotTemplate;
 import com.sadvit.draw.template.DashTemplate;
 import com.sadvit.event.DrawLineEvent;
+import com.sadvit.math.Point2;
 
 public abstract class LineDrawer implements Drawer {
 
@@ -49,6 +50,15 @@ public abstract class LineDrawer implements Drawer {
                 brush = new DashTemplate(brush);
                 break;
         }
+    }
+
+    public LineDrawer(Point2 point1, Point2 point2, Brush brush) {
+        this.brush = brush;
+        x1 = point1.getX();
+        y1 = point1.getY();
+        x2 = point2.getX();
+        y2 = point2.getY();
+        n = Math.max(Math.abs(x2 - x1), Math.abs(y2 - y1));
     }
 
     protected Brush getBrush() {
