@@ -19,6 +19,7 @@ public class HermitCurveDrawer extends CurveDrawer {
 
     @Override
     public void draw(SimpleCanvas canvas) {
+        drawChain(canvas);
         int np = getPoints().size();
         float geom[][] = new float[4][2];
         float mg[][] = new float[4][2];

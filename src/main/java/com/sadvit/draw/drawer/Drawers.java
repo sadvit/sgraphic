@@ -52,6 +52,8 @@ public class Drawers {
                 return new HermitCurveDrawer(event);
             case BSPLINE:
                 return new BSplineCurveDrawer(event);
+            case NURBS:
+                return new NSplineCurveDrawer(event);
             default:
                 return null;
         }

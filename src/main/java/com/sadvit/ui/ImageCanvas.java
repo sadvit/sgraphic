@@ -22,6 +22,11 @@ public class ImageCanvas extends Canvas {
         heightProperty().addListener(evt -> redraw());
         addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             Dialogs.getCurveDialog().addPoint(event.getX(), event.getY()); // TODO realize refresh
+            image.setColor(new Point2(event.getX(), event.getY()), Color.RED);
+            image.setColor(new Point2(event.getX() - 1, event.getY()), Color.RED);
+            image.setColor(new Point2(event.getX() - 1, event.getY() - 1), Color.RED);
+            image.setColor(new Point2(event.getX(), event.getY() - 1), Color.RED);
+            redraw();
             if (firstClick) {
                 firstClick = false;
                 click = new Point2((int)event.getX(), (int)event.getY());

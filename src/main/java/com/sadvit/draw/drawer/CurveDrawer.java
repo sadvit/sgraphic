@@ -5,6 +5,7 @@ import com.sadvit.draw.brush.BrushFactory;
 import com.sadvit.draw.color.ColorAdaptor;
 import com.sadvit.draw.color.PaintBucket;
 import com.sadvit.event.DrawCurveEvent;
+import com.sadvit.image.SimpleCanvas;
 import com.sadvit.math.Point2;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public abstract class CurveDrawer implements Drawer {
 
     private List<Point2> points;
 
-    protected static final int PRECISION = 10;
+    protected static final int PRECISION = 15;
 
     protected float eMatrix[][] = new float[4][4];
 
@@ -75,5 +76,14 @@ public abstract class CurveDrawer implements Drawer {
 
     protected List<Point2> getPoints() {
         return points;
+    }
+
+    protected void drawChain(SimpleCanvas canvas) {
+        Point2 prev = getPoints().get(0);
+        for (int i = 1; i < getPoints().size(); i++) {
+            Point2 next = getPoints().get(i);
+            new Line8ParametricDrawer(prev, next, getBrush()).draw(canvas);
+            prev = next;
+        }
     }
 }

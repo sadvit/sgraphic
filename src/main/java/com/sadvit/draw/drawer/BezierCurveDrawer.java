@@ -19,6 +19,7 @@ public class BezierCurveDrawer extends CurveDrawer {
 
     @Override
     public void draw(SimpleCanvas canvas) {
+        drawChain(canvas);
         int np = getPoints().size();
         float geom[][] = new float[4][2];
         float mg[][] = new float[4][2];
@@ -52,35 +53,5 @@ public class BezierCurveDrawer extends CurveDrawer {
             }
         }
     }
-
-    /*public BezierCurveDrawer(DrawCurveEvent event) {
-        super(event);
-    }
-
-    @Override
-    public void draw(SimpleCanvas canvas) {
-        double dt = 1.0 / 1000.0;
-        Point2 prev = getBezierPoint(dt);
-        for (double t = 2 * dt; t <= 1; t += dt) {
-            Point2 next = getBezierPoint(t);
-            new Line4ParametricDrawer(prev, next, getBrush()).draw(canvas);
-            prev = next;
-        }
-    }
-
-    private Point2 getBezierPoint(double t) {
-        int m = getPoints().size();
-        Point2[] R = new Point2[m];
-        for (int i = 0; i < m; i++) {
-            R[i] = new Point2(getPoints().get(i).getX(), getPoints().get(i).getY());
-        }
-        for (int j = m; j > 0; j--) {
-            for (int i = 0; i < j - 1; i++) {
-                R[i].setX((int) (R[i].getX() + t * (R[i + 1].getX() - R[i].getX())));
-                R[i].setY((int) (R[i].getY() + t * (R[i + 1].getY() - R[i].getY())));
-            }
-        }
-        return new Point2(R[0].getX(), R[0].getY());
-    }*/
 
 }
