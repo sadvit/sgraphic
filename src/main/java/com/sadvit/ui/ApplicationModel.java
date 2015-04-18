@@ -4,6 +4,7 @@ import com.sadvit.draw.MethodType;
 import com.sadvit.draw.drawer.Drawers;
 import com.sadvit.event.DrawCircleEvent;
 import com.sadvit.event.DrawCurveEvent;
+import com.sadvit.event.DrawFillEvent;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.image.SimpleImageUtils;
@@ -59,6 +60,10 @@ public class ApplicationModel extends AbstractModel {
 
     public void createCurve(DrawCurveEvent event) {
         Drawers.curve(event).draw(currentImage);
+    }
+
+    public void createFill(DrawFillEvent event) {
+        Drawers.fill(event).draw(currentImage);
     }
 
     private Color randomColor() {

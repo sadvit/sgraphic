@@ -20,6 +20,7 @@
                 <MenuItem onAction="#onLineClick" mnemonicParsing="false" text="Line"/>
                 <MenuItem onAction="#onCircleClick" mnemonicParsing="false" text="Circle"/>
                 <MenuItem onAction="#onCurvesClick" mnemonicParsing="false" text="Curves"/>
+                <MenuItem onAction="#onFillClick" mnemonicParsing="false" text="Fill"/>
             </Menu>
         </MenuBar>
     </top>
@@ -29,3 +30,4 @@
         </Pane>
     </center>
 </BorderPane>
+

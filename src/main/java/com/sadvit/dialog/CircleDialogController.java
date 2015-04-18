@@ -95,7 +95,6 @@ public class CircleDialogController implements DialogController {
     }
 
     public void draw() {
-        System.out.println("FIRE!");
         EventBus.getInstance().fireEvent(getEvent());
     }
 

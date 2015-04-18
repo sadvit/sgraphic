@@ -1,6 +1,7 @@
 package com.sadvit.image;
 
 import com.sadvit.draw.MethodType;
+import com.sadvit.draw.drawer.FillScanlineDrawer;
 import com.sadvit.draw.drawer.Line8BrezenhamDrawer;
 import com.sadvit.draw.drawer.Line8ParametricDrawer;
 import com.sadvit.event.DrawLineEvent;
@@ -29,6 +30,15 @@ public class SimpleImageUtils {
             Point2 p1 = new PointAdaptor(triangle.getP1()).getPoint();
             Point2 p2 = new PointAdaptor(triangle.getP2()).getPoint();
             Point2 p3 = new PointAdaptor(triangle.getP3()).getPoint();
+            int x0 = (p1.getX() + p2.getX() + p3.getX())/3;
+            int y0 = (p1.getY() + p2.getY() + p3.getY())/3;
+            Point2 mass = new Point2(x0, y0);
+
+            try {
+                if (simpleCanvas.getColor(mass).equals(Color.WHITE))
+                    new FillScanlineDrawer(mass).draw(simpleCanvas);
+            } catch (Exception ignored) {}
+
             if (methodType.equals(MethodType.BRESENHAM)) {
                 new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p1, p2, MethodType.BRESENHAM)).draw(simpleCanvas);
                 new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p2, p3, MethodType.BRESENHAM)).draw(simpleCanvas);

@@ -10,6 +10,8 @@ public class Dialogs {
 
     private static CurveDialog curveDialog;
 
+    private static FillDialog fillDialog;
+
     public static void showMosaicDialog() {
         if (mosaicDialog == null)
             mosaicDialog = new MosaicDialog();
@@ -50,4 +52,16 @@ public class Dialogs {
         return null;
     }
 
+    public static void showFillDialog() {
+        if (fillDialog == null)
+            fillDialog = new FillDialog();
+        if (!fillDialog.isShowing())
+            fillDialog.showDialog();
+    }
+
+    public static FillDialog getFillDialog() {
+        if (fillDialog != null && fillDialog.isShowing())
+            return fillDialog;
+        return null;
+    }
 }

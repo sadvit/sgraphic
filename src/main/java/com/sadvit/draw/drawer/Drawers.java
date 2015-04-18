@@ -2,13 +2,11 @@ package com.sadvit.draw.drawer;
 
 import com.sadvit.event.DrawCircleEvent;
 import com.sadvit.event.DrawCurveEvent;
+import com.sadvit.event.DrawFillEvent;
 import com.sadvit.event.DrawLineEvent;
 
 public class Drawers {
 
-    /**
-     * Возвращает необходимую рисовалку в зависимости от переданного события
-     */
     public static Drawer line(DrawLineEvent event) {
         switch (event.getMethodType()) {
             case BRESENHAM:
@@ -54,6 +52,19 @@ public class Drawers {
                 return new BSplineCurveDrawer(event);
             case NURBS:
                 return new NSplineCurveDrawer(event);
+            default:
+                return null;
+        }
+    }
+
+    public static Drawer fill(DrawFillEvent event) {
+        switch (event.getFillType()) {
+            case SCANLINE:
+                return new FillScanlineDrawer(event);
+            case SECTION:
+                return new FillSectionDrawer(event);
+            case SEED:
+                return new FillSeedDrawer(event);
             default:
                 return null;
         }

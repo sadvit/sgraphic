@@ -1,10 +1,7 @@
 package com.sadvit.ui;
 
 import com.sadvit.dialog.Dialogs;
-import com.sadvit.event.DrawCircleEvent;
-import com.sadvit.event.DrawCurveEvent;
-import com.sadvit.event.DrawLineEvent;
-import com.sadvit.event.DrawMosaicEvent;
+import com.sadvit.event.*;
 import com.sadvit.mvc.AbstractController;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -62,6 +59,7 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         registerHandler(DrawLineEvent.class, this::drawLineEvent);
         registerHandler(DrawCircleEvent.class, this::drawCircleEvent);
         registerHandler(DrawCurveEvent.class, this::drawCurveEvent);
+        registerHandler(DrawFillEvent.class, this::drawFillEvent);
     }
 
     public void onExitClick() {
@@ -119,13 +117,17 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
     }
 
     private void drawCircleEvent(DrawCircleEvent event) {
-        System.out.println("UNFIRE!");
         getModel().createCircle(event);
         refresh();
     }
 
     private void drawCurveEvent(DrawCurveEvent event) {
         getModel().createCurve(event);
+        refresh();
+    }
+
+    private void drawFillEvent(DrawFillEvent event) {
+        getModel().createFill(event);
         refresh();
     }
 
@@ -145,8 +147,13 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         Dialogs.showCurveDialog();
     }
 
+    public void onFillClick() {
+        Dialogs.showFillDialog();
+    }
+
     public void onNewClick() {
         getModel().createWhiteImage(INITIAL_WINDOW_SIZE, INITIAL_WINDOW_SIZE);
         refresh();
     }
+
 }
