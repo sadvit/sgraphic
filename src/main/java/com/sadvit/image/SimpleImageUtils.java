@@ -2,9 +2,6 @@ package com.sadvit.image;
 
 import com.sadvit.draw.MethodType;
 import com.sadvit.draw.drawer.FillScanlineDrawer;
-import com.sadvit.draw.drawer.Line8BrezenhamDrawer;
-import com.sadvit.draw.drawer.Line8ParametricDrawer;
-import com.sadvit.event.DrawLineEvent;
 import com.sadvit.io.reader.ImageBMPReader;
 import com.sadvit.io.reader.WavefrontReader;
 import com.sadvit.io.stream.DataInputStreamLittleEndian;
@@ -32,7 +29,7 @@ public class SimpleImageUtils {
             Point2 p2 = new PointAdaptor(triangle.getP2()).getPoint();
             Point2 p3 = new PointAdaptor(triangle.getP3()).getPoint();
 
-            if (methodType.equals(MethodType.BRESENHAM)) {
+            /*if (methodType.equals(MethodType.BRESENHAM)) {
                 new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p1, p2, MethodType.BRESENHAM)).draw(simpleCanvas);
                 new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p2, p3, MethodType.BRESENHAM)).draw(simpleCanvas);
                 new Line8BrezenhamDrawer(DrawLineEvent.simpleEvent(p1, p3, MethodType.BRESENHAM)).draw(simpleCanvas);
@@ -41,7 +38,7 @@ public class SimpleImageUtils {
                 new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p1, p2, MethodType.PARAMETRIC)).draw(simpleCanvas);
                 new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p2, p3, MethodType.PARAMETRIC)).draw(simpleCanvas);
                 new Line8ParametricDrawer(DrawLineEvent.simpleEvent(p1, p3, MethodType.PARAMETRIC)).draw(simpleCanvas);
-            }
+            }*/
 
             List<Point2> points = new ArrayList<>();
             points.add(p1);

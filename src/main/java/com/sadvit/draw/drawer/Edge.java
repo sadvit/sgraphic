@@ -1,65 +1,122 @@
 package com.sadvit.draw.drawer;
 
 import com.sadvit.math.Point2;
-/*
- * Edge.java
- *
- * Created on 7. September 2007, 16:15
- *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
- */
+import javafx.scene.paint.Color;
 
-/**
- * @author Sunshine
- */
+import java.util.Comparator;
 
-/*
- * Just a class for an edge.
- */
 public class Edge {
 
-    public Point2 p1;        // first vertice
-    public Point2 p2;        // second vertice
-    float m;                // slope
+    private Point2 p1;
+    private Point2 p2;
+    private float m;
+    private float curX;
 
-    float curX;             // x-coord of intersection with scanline
+    private double n;
+    private double dt;
 
-    /*
-     * Create on edge out of two vertices
-     */
-    public Edge(Point2 a, Point2 b) {
-        p1 = a; //new Point(a);
-        p2 = b; //new Point(b);
+    private Color color1;
+    private Color color2;
 
-        // m = dy / dx
-        m = ((float) (p1.getY() - p2.getY()) / (float) (p1.getX() - p2.getX()));
+    public Color interpolate(int y) {
+        int ym = Math.max(p1.getY(), p2.getY());
+        double dy = ym - y;
+        double t = dy * dt;
+        return color1.interpolate(color2, t);
     }
 
-    /*
-     * Called when scanline intersects the first vertice of this edge.
-     * That simply means that the intersection point is this vertice.
-     */
+    private Color random() {
+        return Color.color(Math.random(), Math.random(), Math.random());
+    }
+
+    public Edge(Point2 a, Point2 b) {
+        p1 = a;
+        p2 = b;
+        n = Math.abs(p1.getY() - p2.getY());
+        dt = 1 / n;
+        m = ((float) (p1.getY() - p2.getY()) / (float) (p1.getX() - p2.getX()));
+        color1 = random();
+        color2 = random();
+    }
+
     public void activate() {
         curX = p1.getX();
     }
 
-    /*
-     * Update the intersection point from the scanline and this edge.
-     * Instead of explicitly calculate it we just increment with 1/m every time
-     * it is intersected by the scanline.
-     */
     public void update() {
-        curX += (float) ((float) 1 / (float) m);
+        curX += ((float) 1 / m);
     }
 
-    /*
-     * Called when scanline intersects the second vertice, 
-     * so the intersection point is exactly this vertice and from now on 
-     * we are done with this edge
-     */
     public void deactivate() {
         curX = p2.getX();
     }
 
+    public static Comparator<Edge> comparator() {
+        return (edge1, edge2) -> edge1.p1.getY() - edge2.p1.getY();
+    }
+
+    public Point2 getP1() {
+        return p1;
+    }
+
+    public void setP1(Point2 p1) {
+        this.p1 = p1;
+    }
+
+    public Point2 getP2() {
+        return p2;
+    }
+
+    public void setP2(Point2 p2) {
+        this.p2 = p2;
+    }
+
+    public float getM() {
+        return m;
+    }
+
+    public void setM(float m) {
+        this.m = m;
+    }
+
+    public float getCurX() {
+        return curX;
+    }
+
+    public void setCurX(float curX) {
+        this.curX = curX;
+    }
+
+    public double getN() {
+        return n;
+    }
+
+    public void setN(double n) {
+        this.n = n;
+    }
+
+    public double getDt() {
+        return dt;
+    }
+
+    public void setDt(double dt) {
+        this.dt = dt;
+    }
+
+    public Color getColor1() {
+        return color1;
+    }
+
+    public void setColor1(Color color1) {
+        this.color1 = color1;
+    }
+
+    public Color getColor2() {
+        return color2;
+    }
+
+    public void setColor2(Color color2) {
+        this.color2 = color2;
+    }
 }
+
