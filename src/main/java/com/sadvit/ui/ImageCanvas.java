@@ -6,6 +6,7 @@ import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.math.Point2;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -43,7 +44,19 @@ public class ImageCanvas extends Canvas {
                 }
             }
             if (Dialogs.getFillDialog() != null) {
-                Dialogs.getFillDialog().setPoint(new Point2((int)event.getX(), (int)event.getY()));
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    image.setColor(new Point2(event.getX(), event.getY()), Color.RED);
+                    image.setColor(new Point2(event.getX() - 1, event.getY()), Color.RED);
+                    image.setColor(new Point2(event.getX() - 1, event.getY() - 1), Color.RED);
+                    image.setColor(new Point2(event.getX(), event.getY() - 1), Color.RED);
+                    redraw();
+
+                    Dialogs.getFillDialog().setPoint(new Point2((int)event.getX(), (int)event.getY()));
+                    Dialogs.getFillDialog().addPoint(new Point2((int)event.getX(), (int)event.getY()));
+                }
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    Dialogs.getFillDialog().setPoint(new Point2((int)event.getX(), (int)event.getY()));
+                }
             }
         });
     }

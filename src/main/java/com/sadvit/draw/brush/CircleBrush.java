@@ -27,18 +27,18 @@ public class CircleBrush extends AbstractBrush {
         current = getNextColor();
         for (int x = 0; x < r/Math.sqrt(2); x++) {
             int y = (int) Math.sqrt(r * r - x * x);
-                canvas.setColor(x0 + x, y0 + y, current);
-                canvas.setColor(x0 + y, y0 + x, current);
-                canvas.setColor(x0 + y, y0 - x, current);
-                canvas.setColor(x0 + x, y0 - y, current);
-                canvas.setColor(x0 - x, y0 - y, current);
-                canvas.setColor(x0 - y, y0 - x, current);
-                canvas.setColor(x0 - y, y0 + x, current);
-                canvas.setColor(x0 - x, y0 + y, current);
-                fill(y0 + y, x0 - x, x0 + x, canvas);
-                fill(y0 - y, x0 - x, x0 + x, canvas);
-                fill(y0 - x, x0 - y, x0 + y, canvas);
-                fill(y0 + x, x0 - y, x0 + y, canvas);
-            }
+            canvas.setColor(x0 + x, y0 + y, Color.RED);
+            canvas.setColor(x0 + y, y0 + x, Color.RED);
+            canvas.setColor(x0 + y, y0 - x, Color.RED);
+            canvas.setColor(x0 + x, y0 - y, Color.RED);
+            canvas.setColor(x0 - x, y0 - y, Color.RED);
+            canvas.setColor(x0 - y, y0 - x, Color.RED);
+            canvas.setColor(x0 - y, y0 + x, Color.RED);
+            canvas.setColor(x0 - x, y0 + y, Color.RED);
+            fill(y0 + y, x0 - x, x0 + x, canvas);
+            fill(y0 - y, x0 - x, x0 + x, canvas);
+            fill(y0 - x, x0 - y, x0 + y, canvas);
+            fill(y0 + x, x0 - y, x0 + y, canvas);
+        }
     }
 }

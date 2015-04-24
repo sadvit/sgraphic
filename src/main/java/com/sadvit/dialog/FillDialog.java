@@ -12,4 +12,8 @@ public class FillDialog extends AbstractDialog<FillDialogController> {
         getController().setPoint(point);
     }
 
+    public void addPoint(Point2 point) {
+        getController().addPoint(point);
+    }
+
 }

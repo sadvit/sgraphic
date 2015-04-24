@@ -5,6 +5,8 @@ import com.sadvit.draw.FillType;
 import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
+import java.util.List;
+
 public class DrawFillEvent implements Event {
 
     private Point2 point;
@@ -16,6 +18,16 @@ public class DrawFillEvent implements Event {
     private Color colorInlineEnd;
 
     private FillType fillType;
+
+    private List<Point2> points;
+
+    public List<Point2> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<Point2> points) {
+        this.points = points;
+    }
 
     public Point2 getPoint() {
         return point;

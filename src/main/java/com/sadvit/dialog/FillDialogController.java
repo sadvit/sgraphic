@@ -12,11 +12,24 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class FillDialogController implements DialogController {
 
     private Point2 point;
+
+    private List<Point2> points;
+
+    public List<Point2> getPoints() {
+        return points;
+    }
+
+    public void setPoints(List<Point2> points) {
+        this.points = points;
+    }
+
     public Button buttonCancel;
     public Button buttonDraw;
     public ColorPicker colorOutline;
@@ -31,6 +44,12 @@ public class FillDialogController implements DialogController {
 
     public void setPoint(Point2 point) {
         this.point = point;
+    }
+
+    public void addPoint(Point2 point) {
+        if (points == null)
+            points = new ArrayList<>();
+        points.add(point);
     }
 
     @Override
@@ -70,6 +89,9 @@ public class FillDialogController implements DialogController {
         event.setColorOutline(colorOutline.getValue());
         event.setFillType(fillTypeBox.getValue());
         event.setPoint(point);
+        event.setPoints(points);
+        point = null;
+        points = null;
         return event;
     }
 }
