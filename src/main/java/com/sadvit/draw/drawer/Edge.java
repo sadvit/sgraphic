@@ -18,6 +18,12 @@ public class Edge {
     private Color color1;
     private Color color2;
 
+    public double getT(int y) {
+        int ym = Math.max(p1.getY(), p2.getY());
+        double dy = ym - y;
+        return dy * dt;
+    }
+
     public Color interpolate(int y) {
         int ym = Math.max(p1.getY(), p2.getY());
         double dy = ym - y;

@@ -51,6 +51,14 @@ public class FillScanlineDrawer extends FillDrawer {
         return edges;
     }
 
+    Map<Point2, Color> pcolors = getRandomColors(getPoints());
+
+    private Color interpolate(Edge edge, int y) {
+        Color c1 = pcolors.get(edge.getP1());
+        Color c2 = pcolors.get(edge.getP2());
+        return c2.interpolate(c1, edge.getT(y));
+    }
+
     @Override
     public void draw(SimpleCanvas canvas) {
         List<Edge> edges = createEdges();
@@ -61,6 +69,7 @@ public class FillScanlineDrawer extends FillDrawer {
             if (ymax < edge.getP2().getY())
                 ymax = edge.getP2().getY();
         }
+
         Map<Integer, Color> colors = new HashMap<>();
         ArrayList<Integer> xs = new ArrayList<>();
         for (int y = ymin; y <= ymax; y++) {
@@ -72,7 +81,7 @@ public class FillScanlineDrawer extends FillDrawer {
                     if (y == edge.getP2().getY()) {
                         edge.deactivate();
                         xs.add(x);
-                        colors.put(x, edge.interpolate(y));
+                        colors.put(x, interpolate(edge, y));
                     } else {
                         edge.activate();
                     }
@@ -80,12 +89,12 @@ public class FillScanlineDrawer extends FillDrawer {
                 if (y == edge.getP2().getY()) {
                     edge.deactivate();
                     xs.add(x);
-                    colors.put(x, edge.interpolate(y));
+                    colors.put(x, interpolate(edge, y));
                 }
                 if (y > edge.getP1().getY() && y < edge.getP2().getY()) {
                     edge.update();
                     xs.add(x);
-                    colors.put(x, edge.interpolate(y));
+                    colors.put(x, interpolate(edge, y));
                 }
             }
             Collections.sort(xs);

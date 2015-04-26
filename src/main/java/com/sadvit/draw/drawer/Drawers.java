@@ -10,14 +10,15 @@ public class Drawers {
     public static Drawer line(DrawLineEvent event) {
         switch (event.getMethodType()) {
             case BRESENHAM:
-                switch (event.getBoundType()) {
+                return new ModBrezenhamDrawer(event);
+                /*switch (event.getBoundType()) {
                     case X4:
                         return new Line4BrezenhamDrawer(event);
                     case X8:
                         return new Line8BrezenhamDrawer(event);
                     default:
                         return null;
-                }
+                }*/
             case PARAMETRIC:
                 switch (event.getBoundType()) {
                     case X4:

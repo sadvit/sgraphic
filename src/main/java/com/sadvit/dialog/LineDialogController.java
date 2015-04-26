@@ -121,9 +121,9 @@ public class LineDialogController implements DialogController {
                 TrafaretType.SOLID
         ));
         typeLineBox.setValue(TrafaretType.SOLID);
-        setStartPoint(new Point2(10, 10));
-        setEndPoint(new Point2(20, 20));
-        methodParametric.setSelected(true);
+        setStartPoint(new Point2(100, 100));
+        setEndPoint(new Point2(290, 200));
+        methodBresenham.setSelected(true);
         colorPickerStart.setValue(Color.BLACK);
         colorPickerEnd.setValue(Color.BLACK);
         brushSizeSlider.setValue(20);
