@@ -46,7 +46,6 @@ public class ModBrezenhamDrawer extends LineDrawer {
     }
 
     private Color intensity(Color color, double c) {
-        System.out.println(c);
         double r = color.getRed() * c;
         double g = color.getGreen() * c;
         double b = color.getBlue() * c;

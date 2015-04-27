@@ -8,17 +8,28 @@ import com.sadvit.event.DrawLineEvent;
 public class Drawers {
 
     public static Drawer line(DrawLineEvent event) {
+        if (event.getSmooth() != null) {
+            switch (event.getSmooth()) {
+                case BR_SMOOTH:
+                    return new ModBrezenhamDrawer(event);
+                case MASK_SMOOTH:
+                    return new BlurLineDrawer(event);
+                case WU_SMOOTH:
+                    return new WuLineDrawer(event);
+                default:
+                    break;
+            }
+        }
         switch (event.getMethodType()) {
             case BRESENHAM:
-                return new ModBrezenhamDrawer(event);
-                /*switch (event.getBoundType()) {
+                switch (event.getBoundType()) {
                     case X4:
                         return new Line4BrezenhamDrawer(event);
                     case X8:
                         return new Line8BrezenhamDrawer(event);
                     default:
                         return null;
-                }*/
+                }
             case PARAMETRIC:
                 switch (event.getBoundType()) {
                     case X4:

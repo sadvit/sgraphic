@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -14,6 +15,7 @@
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
         <RowConstraints maxHeight="72.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
@@ -25,19 +27,19 @@
     </padding>
    <children>
        <Label prefHeight="25.0" prefWidth="57.0" text="Method:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-       <Button fx:id="buttonCancel" mnemonicParsing="false" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-       <Button fx:id="buttonDraw" mnemonicParsing="false" onAction="#draw" text="Draw" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+       <Button fx:id="buttonCancel" mnemonicParsing="false" text="Cancel" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
+       <Button fx:id="buttonDraw" mnemonicParsing="false" onAction="#draw" text="Draw" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="CENTER" />
        <FlowPane prefHeight="89.0" prefWidth="119.0" GridPane.columnIndex="1">
            <fx:define>
                <ToggleGroup fx:id="methodToggleGroup"/>
            </fx:define>
            <children>
-               <RadioButton mnemonicParsing="false" text="Parametric" fx:id="methodParametric" toggleGroup="$methodToggleGroup">
+               <RadioButton fx:id="methodParametric" mnemonicParsing="false" text="Parametric">
                    <padding>
                        <Insets top="5.0" />
                    </padding>
                </RadioButton>
-               <RadioButton mnemonicParsing="false" text="Bresenham" fx:id="methodBresenham" toggleGroup="$methodToggleGroup">
+               <RadioButton fx:id="methodBresenham" mnemonicParsing="false" text="Bresenham" toggleGroup="$methodToggleGroup">
                    <padding>
                        <Insets top="5.0" />
                    </padding>
@@ -80,15 +82,17 @@
        <ColorPicker fx:id="colorPickerStart" GridPane.columnIndex="1" GridPane.rowIndex="2" />
        <Label prefHeight="25.0" prefWidth="71.0" text="Color end:" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
        <ColorPicker fx:id="colorPickerEnd" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-       <Label prefHeight="25.0" prefWidth="69.0" text="Type line:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-       <ComboBox fx:id="typeLineBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-       <Label prefHeight="25.0" prefWidth="93.0" text="Type bound:" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
-       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+       <Label prefHeight="25.0" prefWidth="69.0" text="Type line:" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
+       <ComboBox fx:id="typeLineBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+       <!--<ComboBox fx:id="smoothLineBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />-->
+       <Label prefHeight="25.0" prefWidth="93.0" text="Type bound:" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
            <fx:define>
                <ToggleGroup fx:id="boundToggleGroup"/>
            </fx:define>
           <children>
-              <RadioButton fx:id="bound4xRadio" mnemonicParsing="false" prefHeight="18.0" prefWidth="85.0" text="4X" toggleGroup="$boundToggleGroup" />
+              <RadioButton fx:id="bound4xRadio" mnemonicParsing="false" prefHeight="18.0" prefWidth="85.0" text="4X">
+               </RadioButton>
               <RadioButton fx:id="bound8xRadio" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" text="8X" toggleGroup="$boundToggleGroup">
                   <FlowPane.margin>
                       <Insets top="5.0" />
@@ -96,13 +100,13 @@
               </RadioButton>
           </children>
        </FlowPane>
-       <Label prefHeight="25.0" prefWidth="93.0" text="Brush form:" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
-       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+       <Label prefHeight="25.0" prefWidth="93.0" text="Brush form:" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
+       <FlowPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
            <fx:define>
                <ToggleGroup fx:id="formToggleGroup"/>
            </fx:define>
           <children>
-              <RadioButton fx:id="squareFormButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="83.0" text="Square" toggleGroup="$formToggleGroup">
+              <RadioButton fx:id="squareFormButton" mnemonicParsing="false" prefHeight="18.0" prefWidth="83.0" text="Square">
                   <FlowPane.margin>
                       <Insets top="5.0" />
                   </FlowPane.margin>
@@ -114,7 +118,9 @@
               </RadioButton>
           </children>
        </FlowPane>
-       <Label prefHeight="25.0" prefWidth="93.0" text="Brush size:" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER" />
-       <Slider fx:id="brushSizeSlider" GridPane.columnIndex="1" GridPane.rowIndex="7" min="1" max="10" />
+       <Label prefHeight="25.0" prefWidth="93.0" text="Brush size:" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
+       <Slider fx:id="brushSizeSlider" max="10" min="1" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label prefHeight="25.0" prefWidth="96.0" text="Smooth type:" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+      <ComboBox fx:id="smoothLineBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>

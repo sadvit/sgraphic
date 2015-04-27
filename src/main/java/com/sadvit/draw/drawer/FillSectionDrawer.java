@@ -11,7 +11,7 @@ public class FillSectionDrawer implements Drawer {
 
     @Override
     public void draw(SimpleCanvas canvas) {
-        System.out.println("section");
+
     }
 
 }

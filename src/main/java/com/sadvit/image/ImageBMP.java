@@ -54,6 +54,19 @@ public class ImageBMP implements SimpleCanvas {
         pixelData[position + 2] = toByte(color.getRed());
     }
 
+    public Color getValue(int position) {
+        int R = pixelData[position + 2] & 0xFF;
+        int G = pixelData[position + 1] & 0xFF;
+        int B = pixelData[position ] & 0xFF;
+        return Color.rgb(R, G, B);
+    }
+
+    public void setValue(int position, Color color) {
+        pixelData[position] = toByte(color.getBlue());
+        pixelData[position + 1] = toByte(color.getGreen());
+        pixelData[position + 2] = toByte(color.getRed());
+    }
+
     @Override
     public Color getColor(Point2 point) {
         return getColor(point.getX(), point.getY());

@@ -35,7 +35,6 @@ public class WuLineDrawer extends LineDrawer {
         float dx = x2 - x1;
         float dy = y2 - y1;
         float gradient = dy / dx;
-        System.out.println(gradient);
         float y = y1 + gradient;
         for (int x = x1 + 1; x <= x2 - 1; x++) {
             point(steep, x, (int) y, 1 - (y - (int) y), canvas);

@@ -19,14 +19,9 @@ public class ColorInterpolable implements PaintBucket {
         this.colorStart = colorStart;
         this.colorEnd = colorEnd;
         double t = 1.0 / (length - 1.0);
-        System.out.println("t " + t);
-        System.out.println("len " + length);
-        dt = t;// / (double) length;
+        dt = t;
     }
 
-    /**
-     * Каждый новый вызов будет возвращать новый, измененный цвет
-     */
     @Override
     public Color getNextColor() {
         ti += dt;

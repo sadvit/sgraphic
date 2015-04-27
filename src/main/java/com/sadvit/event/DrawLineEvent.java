@@ -3,6 +3,7 @@ package com.sadvit.event;
 
 import com.sadvit.communication.Event;
 import com.sadvit.draw.BoundType;
+import com.sadvit.draw.SmoothType;
 import com.sadvit.draw.brush.BrushType;
 import com.sadvit.draw.template.TrafaretType;
 import com.sadvit.draw.MethodType;
@@ -28,6 +29,16 @@ public class DrawLineEvent implements Event {
     private BrushType brushType;
 
     private int brushSize;
+
+    private SmoothType smooth;
+
+    public SmoothType getSmooth() {
+        return smooth;
+    }
+
+    public void setSmooth(SmoothType smooth) {
+        this.smooth = smooth;
+    }
 
     public MethodType getMethodType() {
         return methodType;

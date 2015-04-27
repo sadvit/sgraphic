@@ -2,6 +2,7 @@ package com.sadvit.dialog;
 
 import com.sadvit.communication.EventBus;
 import com.sadvit.draw.BoundType;
+import com.sadvit.draw.SmoothType;
 import com.sadvit.draw.brush.BrushType;
 import com.sadvit.draw.template.TrafaretType;
 import com.sadvit.draw.MethodType;
@@ -19,6 +20,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LineDialogController implements DialogController {
+
+    @FXML
+    private ComboBox<SmoothType> smoothLineBox;
 
     @FXML
     private Slider brushSizeSlider;
@@ -104,8 +108,8 @@ public class LineDialogController implements DialogController {
         if (bound8xRadio.isSelected()) event.setBoundType(BoundType.X8);
         if (squareFormButton.isSelected()) event.setBrushType(BrushType.SQUARE);
         if (circleFormButton.isSelected()) event.setBrushType(BrushType.CIRCLE);
-        System.out.println((int)brushSizeSlider.getValue());
         event.setBrushSize((int)brushSizeSlider.getValue());
+        event.setSmooth(smoothLineBox.getValue());
         return event;
     }
 
@@ -119,6 +123,11 @@ public class LineDialogController implements DialogController {
                 TrafaretType.DASH_DOTTED,
                 TrafaretType.DASHED,
                 TrafaretType.SOLID
+        ));
+        smoothLineBox.setItems(FXCollections.observableArrayList(
+                SmoothType.BR_SMOOTH,
+                SmoothType.MASK_SMOOTH,
+                SmoothType.WU_SMOOTH
         ));
         typeLineBox.setValue(TrafaretType.SOLID);
         setStartPoint(new Point2(100, 100));
