@@ -1,13 +1,19 @@
 package com.sadvit.draw.drawer;
 
+import com.sadvit.draw.brush.Brush;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
+import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
 public class ModBrezenhamDrawer extends LineDrawer {
 
     public ModBrezenhamDrawer(DrawLineEvent event) {
         super(event);
+    }
+
+    public ModBrezenhamDrawer(Point2 point1, Point2 point2, Brush brush) {
+        super(point1, point2, brush);
     }
 
     void plotLineAA(int x0, int y0, int x1, int y1, SimpleCanvas canvas) {
