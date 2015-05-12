@@ -20,4 +20,6 @@ public interface SimpleCanvas {
 
     public int getHeight();
 
+    public void clean();
+
 }

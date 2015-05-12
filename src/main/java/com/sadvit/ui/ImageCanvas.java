@@ -58,6 +58,14 @@ public class ImageCanvas extends Canvas {
                     Dialogs.getFillDialog().setPoint(new Point2((int)event.getX(), (int)event.getY()));
                 }
             }
+            if (Dialogs.getAmputationDialog() != null) {
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    Dialogs.getAmputationDialog().addClipPoint(new Point2((int) event.getX(), (int) event.getY()));
+                }
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    Dialogs.getAmputationDialog().addWindowPoint(new Point2((int) event.getX(), (int) event.getY()));
+                }
+            }
         });
     }
 

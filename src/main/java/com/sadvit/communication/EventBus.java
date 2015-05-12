@@ -21,7 +21,11 @@ public class EventBus {
     @SuppressWarnings("unchecked")
     public <T extends Event> void fireEvent(T event) {
         Handler<T> handler = (Handler<T>) handlers.get(event.getClass());
-        handler.handle(event);
+        if (handler == null) {
+            System.err.println("Handler is not register to event: " + event.getClass().getSimpleName());
+        } else {
+            handler.handle(event);
+        }
     }
 
     public <T extends Event> void registerHandler(Class<T> eventType, Handler<T> eventHandler) {

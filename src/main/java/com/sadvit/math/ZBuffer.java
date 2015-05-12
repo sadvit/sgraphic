@@ -50,4 +50,9 @@ public class ZBuffer implements SimpleCanvas {
     public int getHeight() {
         return 0;
     }
+
+    @Override
+    public void clean() {
+
+    }
 }

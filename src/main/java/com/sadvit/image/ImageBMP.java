@@ -91,6 +91,15 @@ public class ImageBMP implements SimpleCanvas {
         return infoHeader.getHeight();
     }
 
+    @Override
+    public void clean() {
+        for (int i = 0; i < getWidth(); i++) {
+            for (int j = 0; j < getHeight(); j++) {
+                setColor(i, j, Color.WHITE);
+            }
+        }
+    }
+
     /**
      * Calculate position point with coordinates X and Y in pixel byte array
      */

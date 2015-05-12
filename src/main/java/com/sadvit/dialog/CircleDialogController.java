@@ -27,13 +27,7 @@ public class CircleDialogController implements DialogController {
 
     @FXML
     private RadioButton circleFormButton;
-/*
-    @FXML
-    private RadioButton bound8xRadio;
 
-    @FXML
-    private RadioButton bound4xRadio;
-*/
     @FXML
     private ColorPicker figureColor;
 

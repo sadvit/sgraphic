@@ -21,6 +21,7 @@
                 <MenuItem onAction="#onCircleClick" mnemonicParsing="false" text="Circle"/>
                 <MenuItem onAction="#onCurvesClick" mnemonicParsing="false" text="Curves"/>
                 <MenuItem onAction="#onFillClick" mnemonicParsing="false" text="Fill"/>
+                <MenuItem onAction="#onAmputationClick" mnemonicParsing="false" text="Amputation"/>
             </Menu>
         </MenuBar>
     </top>

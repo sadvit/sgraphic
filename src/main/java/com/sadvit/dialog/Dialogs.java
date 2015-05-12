@@ -12,6 +12,8 @@ public class Dialogs {
 
     private static FillDialog fillDialog;
 
+    private static AmputationDialog amputationDialog;
+
     public static void showMosaicDialog() {
         if (mosaicDialog == null)
             mosaicDialog = new MosaicDialog();
@@ -64,4 +66,18 @@ public class Dialogs {
             return fillDialog;
         return null;
     }
+
+    public static AmputationDialog getAmputationDialog() {
+        if (amputationDialog != null && amputationDialog.isShowing())
+            return amputationDialog;
+        return null;
+    }
+
+    public static void showAmputationDialog() {
+        if (amputationDialog == null)
+            amputationDialog = new AmputationDialog();
+        if (!amputationDialog.isShowing())
+            amputationDialog.showDialog();
+    }
+
 }

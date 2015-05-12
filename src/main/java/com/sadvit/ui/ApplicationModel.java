@@ -2,10 +2,7 @@ package com.sadvit.ui;
 
 import com.sadvit.draw.MethodType;
 import com.sadvit.draw.drawer.Drawers;
-import com.sadvit.event.DrawCircleEvent;
-import com.sadvit.event.DrawCurveEvent;
-import com.sadvit.event.DrawFillEvent;
-import com.sadvit.event.DrawLineEvent;
+import com.sadvit.event.*;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.image.SimpleImageUtils;
 import com.sadvit.mvc.AbstractModel;
@@ -65,6 +62,11 @@ public class ApplicationModel extends AbstractModel {
     public void createFill(DrawFillEvent event) {
         Drawers.fill(event).draw(currentImage);
     }
+
+    public void createWindow(DrawWindowEvent event) {
+        Drawers.amputate(event).draw(currentImage);
+    }
+
 
     private Color randomColor() {
         return new Color(Math.random(), Math.random(), Math.random(), 1);

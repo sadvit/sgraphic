@@ -1,9 +1,6 @@
 package com.sadvit.draw.drawer;
 
-import com.sadvit.event.DrawCircleEvent;
-import com.sadvit.event.DrawCurveEvent;
-import com.sadvit.event.DrawFillEvent;
-import com.sadvit.event.DrawLineEvent;
+import com.sadvit.event.*;
 
 public class Drawers {
 
@@ -77,6 +74,19 @@ public class Drawers {
                 return new FillSectionDrawer(event);
             case SEED:
                 return new FillSeedDrawer(event);
+            default:
+                return null;
+        }
+    }
+
+    public static Drawer amputate(DrawWindowEvent event) {
+        switch (event.getType()) {
+            case COHEN_SUTHERLAND:
+                return new CohenSutherlandDrawer(event);
+            case SUTHERLAND_HODGMAN:
+                return new SutherlandHodgmanDrawer(event);
+            case WEILER_ATHERTON:
+                return new WeilerAthertonDrawer(event);
             default:
                 return null;
         }
