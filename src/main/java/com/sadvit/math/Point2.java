@@ -1,5 +1,7 @@
 package com.sadvit.math;
 
+import java.util.LinkedList;
+
 public class Point2 {
 
     private int x;
@@ -35,9 +37,39 @@ public class Point2 {
         this.y = (int) Math.round(y);
     }
 
+    boolean isInside(LinkedList<Node> nodes) {
+        if (nodes.size() <= 1)
+            return false;
+
+        int intersectionsNum = 0;
+        int prev = nodes.size() - 1;
+        boolean prevUnder = nodes.get(prev).getPoint().getY() < getY();
+
+        for (int i = 0; i < nodes.size(); ++i) {
+            boolean curUnder = nodes.get(i).getPoint().getY() < getY();
+
+            Point2 a = nodes.get(prev).getPoint().minus(this);
+            Point2 b = nodes.get(i).getPoint().minus(this);
+
+            float t = (a.getX() * (b.getY() - a.getY()) - a.getY() * (b.getX() - a.getX()));
+            if (curUnder && !prevUnder) {
+                if (t > 0)
+                    intersectionsNum += 1;
+            }
+            if (!curUnder && prevUnder) {
+                if (t < 0)
+                    intersectionsNum += 1;
+            }
+
+            prev = i;
+            prevUnder = curUnder;
+        }
+        return (intersectionsNum & 1) != 0;
+    }
+
     @Override
     public String toString() {
-        return "Point{" +
+        return "{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';
@@ -63,6 +95,10 @@ public class Point2 {
         int result = x;
         result = 31 * result + y;
         return result;
+    }
+
+    public Point2 minus(Point2 point) {
+        return new Point2(x - point.getX(), y - point.getY());
     }
 
 }

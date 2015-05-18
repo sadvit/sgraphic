@@ -18,17 +18,26 @@ public class ImageCanvas extends Canvas {
 
     private boolean firstClick = true;
 
+    private void drawClick(MouseEvent event, Color color) {
+        image.setColor(new Point2(event.getX(), event.getY()), color);
+        image.setColor(new Point2(event.getX() - 1, event.getY()), color);
+        image.setColor(new Point2(event.getX() - 2, event.getY()), color);
+        image.setColor(new Point2(event.getX(), event.getY() + 1), color);
+        image.setColor(new Point2(event.getX(), event.getY() + 2), color);
+        image.setColor(new Point2(event.getX() + 1, event.getY()), color);
+        image.setColor(new Point2(event.getX() + 2, event.getY()), color);
+        image.setColor(new Point2(event.getX(), event.getY() - 1), color);
+        image.setColor(new Point2(event.getX(), event.getY() - 2), color);
+        redraw();
+    }
+
     public ImageCanvas() {
         widthProperty().addListener(evt -> redraw());
         heightProperty().addListener(evt -> redraw());
         addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             if (Dialogs.getCurveDialog() != null) {
                 Dialogs.getCurveDialog().addPoint(event.getX(), event.getY());
-                image.setColor(new Point2(event.getX(), event.getY()), Color.RED);
-                image.setColor(new Point2(event.getX() - 1, event.getY()), Color.RED);
-                image.setColor(new Point2(event.getX() - 1, event.getY() - 1), Color.RED);
-                image.setColor(new Point2(event.getX(), event.getY() - 1), Color.RED);
-                redraw();
+                drawClick(event, Color.RED);
                 if (firstClick) {
                     firstClick = false;
                     click = new Point2((int)event.getX(), (int)event.getY());
@@ -45,12 +54,7 @@ public class ImageCanvas extends Canvas {
             }
             if (Dialogs.getFillDialog() != null) {
                 if (event.getButton() == MouseButton.PRIMARY) {
-                    image.setColor(new Point2(event.getX(), event.getY()), Color.RED);
-                    image.setColor(new Point2(event.getX() - 1, event.getY()), Color.RED);
-                    image.setColor(new Point2(event.getX() - 1, event.getY() - 1), Color.RED);
-                    image.setColor(new Point2(event.getX(), event.getY() - 1), Color.RED);
-                    redraw();
-
+                    drawClick(event, Color.RED);
                     Dialogs.getFillDialog().setPoint(new Point2((int)event.getX(), (int)event.getY()));
                     Dialogs.getFillDialog().addPoint(new Point2((int)event.getX(), (int)event.getY()));
                 }
@@ -60,9 +64,11 @@ public class ImageCanvas extends Canvas {
             }
             if (Dialogs.getAmputationDialog() != null) {
                 if (event.getButton() == MouseButton.PRIMARY) {
+                    drawClick(event, Color.RED);
                     Dialogs.getAmputationDialog().addClipPoint(new Point2((int) event.getX(), (int) event.getY()));
                 }
                 if (event.getButton() == MouseButton.SECONDARY) {
+                    drawClick(event, Color.GREEN);
                     Dialogs.getAmputationDialog().addWindowPoint(new Point2((int) event.getX(), (int) event.getY()));
                 }
             }
