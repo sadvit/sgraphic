@@ -37,7 +37,7 @@ public class Point2 {
         this.y = (int) Math.round(y);
     }
 
-    boolean isInside(LinkedList<Node> nodes) {
+    public boolean isInside(LinkedList<Node> nodes) {
         if (nodes.size() <= 1)
             return false;
 

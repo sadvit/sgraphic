@@ -86,7 +86,7 @@ public class Line {
         return (pointInSegment(point, line1.getP1(), line1.getP2()) && pointInSegment(point, line2.getP1(), line2.getP2())) ? point : null;
     }
 
-    private static boolean pointInSegment(Point2 p, Point2 p1, Point2 p2) {
+    public static boolean pointInSegment(Point2 p, Point2 p1, Point2 p2) {
         int maxX = Math.max(p1.getX(), p2.getX());
         int maxY = Math.max(p1.getY(), p2.getY());
         int minX = Math.min(p1.getX(), p2.getX());

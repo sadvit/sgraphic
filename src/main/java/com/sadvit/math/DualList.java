@@ -1,5 +1,6 @@
 package com.sadvit.math;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class DualList {
@@ -22,20 +23,41 @@ public class DualList {
         currentList = clip;
     }
 
-    private void setStart(Node node) {
+    private void setStart(Node node, int i) {
         start = node;
-        shift();
+        currentPosition = i;
+    }
+
+    private void shiftList(LinkedList<Node> nodes) {
+        for (int i = 0; i < nodes.size(); i++) {
+            Node prev = cyclicGet(nodes, i - 1);
+            Node curr = cyclicGet(nodes, i);
+            Node next = cyclicGet(nodes, i + 1);
+            if (curr.isIntersect() && next.isInside() && !prev.isInside()) {
+                Collections.rotate(nodes, nodes.size() - i + 1); // TODO check...
+                break;
+            }
+        }
+    }
+
+    private Node cyclicGet(LinkedList<Node> nodes, int i) {
+        if (i == -1) return nodes.get(nodes.size() - 2);
+        if (i == nodes.size()) return nodes.get(0);
+        return nodes.get(i);
     }
 
     public LinkedList<LinkedList<Node>> getSublists() {
         LinkedList<LinkedList<Node>> sublists = new LinkedList<>();
-        for (int i = 0; i < clip.size(); i++) {
+        shiftList(clip);
+        for (int i = 0; i < clip.size() - 1; i++) { // TODO check "clip.size() - 1"
             Node node = clip.get(i);
             if (node.isIntersect()) {
-                setStart(node);
+                setStart(node, i);
                 LinkedList<Node> sublist = getSublist();
+                if (sublist.size() > 0) sublist.add(sublist.get(0));
+                System.out.println("res: " + sublist);
+                removeAll(sublist); // TODO check...
                 sublists.add(sublist);
-                removeAll(sublist);
             }
         }
         return sublists;
@@ -45,17 +67,17 @@ public class DualList {
         nodes.forEach(node -> {
             if (clip.contains(node))
                 clip.remove(node);
-            if (window.contains(node))
-                window.remove(node);
+            /*if (window.contains(node))
+                window.remove(node);*/
         });
     }
 
     private LinkedList<Node> getSublist() {
         LinkedList<Node> sublist = new LinkedList<>();
-        Node next = getCurrent();
+        Node next;
         do {
-            sublist.add(next);
             next = getNext();
+            sublist.add(next);
         } while (!next.equals(start));
         return sublist;
     }
@@ -67,6 +89,9 @@ public class DualList {
     }
 
     private Node getCurrent() {
+        if (currentPosition >= currentList.size()) {
+            currentPosition = 0;
+        }
         return currentList.get(currentPosition);
     }
 

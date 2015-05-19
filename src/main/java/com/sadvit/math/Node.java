@@ -8,6 +8,16 @@ public class Node {
 
     private boolean isIntersect;
 
+    private boolean isInside;
+
+    public boolean isInside() {
+        return isInside;
+    }
+
+    public void setInside(boolean isInside) {
+        this.isInside = isInside;
+    }
+
     public boolean isIntersect() {
         return isIntersect;
     }
@@ -18,9 +28,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "N{" +
-                "P=" + point +
-                '}';
+        return "N{" + point + " intersect: " + isIntersect + '}';
     }
 
     @Override
