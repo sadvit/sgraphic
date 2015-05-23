@@ -62,4 +62,9 @@ public class ZBuffer implements SimpleCanvas {
     public void forEach(Consumer<Point2> action) {
 
     }
+
+    @Override
+    public SimpleCanvas clone() {
+        return null;
+    }
 }

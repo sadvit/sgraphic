@@ -104,8 +104,8 @@ public class ImageBMP implements SimpleCanvas {
 
     @Override
     public void forEach(Consumer<Point2> action) {
-        for (int i = 0; i < getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
+        for (int i = 0; i < getWidth(); i++) {
+            for (int j = 0; j < getHeight(); j++) {
                 action.accept(new Point2(i, j));
             }
         }

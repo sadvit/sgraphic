@@ -2,6 +2,12 @@ package com.sadvit.ui;
 
 import com.sadvit.communication.EventBus;
 import com.sadvit.dialog.Dialogs;
+import com.sadvit.draw.brush.Brush;
+import com.sadvit.draw.brush.BrushFactory;
+import com.sadvit.draw.brush.BrushType;
+import com.sadvit.draw.color.ColorAdaptor;
+import com.sadvit.draw.drawer.LineDrawer;
+import com.sadvit.draw.drawer.ModBrezenhamDrawer;
 import com.sadvit.event.DrawLineEvent;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.math.Point2;
@@ -29,6 +35,22 @@ public class ImageCanvas extends Canvas {
         image.setColor(new Point2(event.getX(), event.getY() - 1), color);
         image.setColor(new Point2(event.getX(), event.getY() - 2), color);
         redraw();
+    }
+
+    private Point2 prev;
+
+    private void drawChain() {
+
+    }
+
+    private void drawLine(Point2 p1, Point2 p2, SimpleCanvas canvas) {
+        drawLine(p1.getX(), p1.getY(), p2.getX(), p2.getY(), canvas);
+    }
+
+    private void drawLine(int x0, int y0, int x1, int y1, SimpleCanvas canvas) {
+        Brush brush = BrushFactory.getBrush(BrushType.CIRCLE, new ColorAdaptor(javafx.scene.paint.Color.BLACK), 1);
+        LineDrawer lineDrawer = new ModBrezenhamDrawer(new Point2(x0, y0), new Point2(x1, y1), brush);
+        lineDrawer.draw(canvas);
     }
 
     public ImageCanvas() {
@@ -71,6 +93,16 @@ public class ImageCanvas extends Canvas {
                     drawClick(event, Color.GREEN);
                     Dialogs.getAmputationDialog().addWindowPoint(new Point2((int) event.getX(), (int) event.getY()));
                 }
+            }
+            if (Dialogs.getConversionDialog() != null) {
+                drawClick(event, Color.RED);
+                Point2 point = new Point2((int) event.getX(), (int) event.getY());
+                if (prev != null) {
+                    drawLine(prev, point, image);
+                    redraw();
+                }
+                Dialogs.getConversionDialog().addVertex(point);
+                prev = point;
             }
         });
     }

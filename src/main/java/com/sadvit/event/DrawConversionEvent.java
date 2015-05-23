@@ -1,27 +1,30 @@
 package com.sadvit.event;
 
 import com.sadvit.communication.Event;
+import com.sadvit.math.Point2;
+import org.apache.commons.math3.linear.RealMatrix;
+
+import java.util.LinkedList;
 
 public class DrawConversionEvent implements Event {
 
-    private double a;
+    private RealMatrix matrix;
 
-    private double b;
+    private LinkedList<Point2> points;
 
-    public double getA() {
-        return a;
+    public LinkedList<Point2> getPoints() {
+        return points;
     }
 
-    public void setA(double a) {
-        this.a = a;
+    public void setPoints(LinkedList<Point2> points) {
+        this.points = points;
     }
 
-    public double getB() {
-        return b;
+    public RealMatrix getMatrix() {
+        return matrix;
     }
 
-    public void setB(double b) {
-        this.b = b;
+    public void setMatrix(RealMatrix matrix) {
+        this.matrix = matrix;
     }
-
 }
