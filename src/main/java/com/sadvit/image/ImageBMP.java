@@ -3,6 +3,8 @@ package com.sadvit.image;
 import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
 
+import java.util.function.Consumer;
+
 public class ImageBMP implements SimpleCanvas {
 
     public BitmapFileHeader fileHeader;
@@ -100,6 +102,15 @@ public class ImageBMP implements SimpleCanvas {
         }
     }
 
+    @Override
+    public void forEach(Consumer<Point2> action) {
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                action.accept(new Point2(i, j));
+            }
+        }
+    }
+
     /**
      * Calculate position point with coordinates X and Y in pixel byte array
      */
@@ -114,4 +125,16 @@ public class ImageBMP implements SimpleCanvas {
         }
     }
 
+    @Override
+    public ImageBMP clone() {
+        byte[] result = new byte[pixelData.length];
+        System.arraycopy(pixelData, 0, result, 0, pixelData.length);
+        ImageBMP imageBMP = new ImageBMP();
+        BitmapFileHeader header = fileHeader.clone();
+        BitmapInfo info = infoHeader.clone();
+        imageBMP.setFileHeader(header);
+        imageBMP.setInfoHeader(info);
+        imageBMP.setPixelData(result);
+        return imageBMP;
+    }
 }

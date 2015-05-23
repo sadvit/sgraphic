@@ -92,4 +92,8 @@ public class Drawers {
         }
     }
 
+    public static Drawer conversion(DrawConversionEvent event) {
+        return new ConversionDrawer();
+    }
+
 }

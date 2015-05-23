@@ -67,6 +67,9 @@ public class ApplicationModel extends AbstractModel {
         Drawers.amputate(event).draw(currentImage);
     }
 
+    public void createConversion(DrawConversionEvent event) {
+        Drawers.conversion(event).draw(currentImage);
+    }
 
     private Color randomColor() {
         return new Color(Math.random(), Math.random(), Math.random(), 1);

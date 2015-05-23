@@ -10,6 +10,7 @@ import com.sadvit.math.Point2;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @SuppressWarnings("unchecked")
 public class SutherlandHodgmanDrawer implements Drawer {
@@ -99,8 +100,12 @@ public class SutherlandHodgmanDrawer implements Drawer {
                     }
                 }
             }
-            if (clippedPoly.getFirst() != clippedPoly.getLast())
-                clippedPoly.add(clippedPoly.getFirst());
+            try {
+                if (clippedPoly.getFirst() != clippedPoly.getLast())
+                    clippedPoly.add(clippedPoly.getFirst());
+            } catch (NoSuchElementException e) {
+                System.out.println("1");
+            }
             workPoly = (List<Point2>) clippedPoly.clone();
         }
     }

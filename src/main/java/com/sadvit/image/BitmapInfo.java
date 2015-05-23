@@ -106,4 +106,21 @@ public class BitmapInfo {
 
     }
 
+    @Override
+    protected BitmapInfo clone() {
+        BitmapInfo info = new BitmapInfo();
+        info.setBitsPerPixel(bitsPerPixel);
+        info.setWidth(width);
+        info.setHeight(height);
+        info.setPlanes(planes);
+        info.setHeaderSize(headerSize);
+        info.setCompression(compression);
+        info.setSizeImage(sizeImage);
+        info.setHorizontalResolution(horizontalResolution);
+        info.setVerticalResolution(verticalResolution);
+        info.setColorsUsed(colorsUsed);
+        info.setColorsImportant(colorsImportant);
+        return info;
+    }
+
 }

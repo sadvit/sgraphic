@@ -34,4 +34,12 @@ public class BitmapFileHeader {
         this.imageDataOffset = imageDataOffset;
     }
 
+    @Override
+    protected BitmapFileHeader clone() {
+        BitmapFileHeader header = new BitmapFileHeader();
+        header.setSignature(signature);
+        header.setFileSize(fileSize);
+        header.setImageDataOffset(imageDataOffset);
+        return header;
+    }
 }

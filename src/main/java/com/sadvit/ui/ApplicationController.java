@@ -61,6 +61,7 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         registerHandler(DrawCurveEvent.class, this::drawCurveEvent);
         registerHandler(DrawFillEvent.class, this::drawFillEvent);
         registerHandler(DrawWindowEvent.class, this::drawAmputationEvent);
+        registerHandler(DrawConversionEvent.class, this::drawConversionEvent);
     }
 
     public void onExitClick() {
@@ -137,6 +138,11 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
         refresh();
     }
 
+    private void drawConversionEvent(DrawConversionEvent event) {
+        getModel().createConversion(event);
+        refresh();
+    }
+
     public ApplicationController() {
         super(new ApplicationModel());
     }
@@ -159,6 +165,10 @@ public class ApplicationController extends AbstractController<ApplicationModel> 
 
     public void onAmputationClick() {
         Dialogs.showAmputationDialog();
+    }
+
+    public void onConversionClick() {
+        Dialogs.showConversionDialog();
     }
 
     public void onNewClick() {

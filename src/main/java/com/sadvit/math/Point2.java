@@ -1,5 +1,8 @@
 package com.sadvit.math;
 
+import org.apache.commons.math3.linear.ArrayRealVector;
+import org.apache.commons.math3.linear.RealVector;
+
 import java.util.LinkedList;
 
 public class Point2 {
@@ -88,6 +91,10 @@ public class Point2 {
 
         return x == point2.x && y == point2.y;
 
+    }
+
+    public RealVector toUniform() {
+        return new ArrayRealVector(new double[]{x, y, 1});
     }
 
     @Override

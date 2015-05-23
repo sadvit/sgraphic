@@ -14,6 +14,8 @@ public class Dialogs {
 
     private static AmputationDialog amputationDialog;
 
+    private static ConversionDialog conversionDialog;
+
     public static void showMosaicDialog() {
         if (mosaicDialog == null)
             mosaicDialog = new MosaicDialog();
@@ -78,6 +80,19 @@ public class Dialogs {
             amputationDialog = new AmputationDialog();
         if (!amputationDialog.isShowing())
             amputationDialog.showDialog();
+    }
+
+    public static ConversionDialog getConversionDialog() {
+        if (conversionDialog != null && conversionDialog.isShowing())
+            return conversionDialog;
+        return null;
+    }
+
+    public static void showConversionDialog() {
+        if (conversionDialog == null)
+            conversionDialog = new ConversionDialog();
+        if (!conversionDialog.isShowing())
+            conversionDialog.showDialog();
     }
 
 }

@@ -3,6 +3,8 @@ package com.sadvit.math;
 import com.sadvit.image.SimpleCanvas;
 import javafx.scene.paint.Color;
 
+import java.util.function.Consumer;
+
 public class ZBuffer implements SimpleCanvas {
 
     private int[][] array;
@@ -53,6 +55,11 @@ public class ZBuffer implements SimpleCanvas {
 
     @Override
     public void clean() {
+
+    }
+
+    @Override
+    public void forEach(Consumer<Point2> action) {
 
     }
 }
