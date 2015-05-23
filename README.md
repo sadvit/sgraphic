@@ -3,3 +3,4 @@ Graphic editor based on JavaFX. Current version includes the following functiona
   2. Circle drawing
   3. Curves drawing
   4. Simple 3D render and reading from OBJ format
+  5. Weiler Atherton line clipping java implementation
