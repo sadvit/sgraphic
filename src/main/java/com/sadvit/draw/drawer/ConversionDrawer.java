@@ -8,6 +8,7 @@ import com.sadvit.event.DrawConversionEvent;
 import com.sadvit.image.SimpleCanvas;
 import com.sadvit.math.Point2;
 import javafx.scene.paint.Color;
+import org.apache.commons.math3.linear.MatrixUtils;
 import org.apache.commons.math3.linear.RealVector;
 
 import java.util.LinkedList;
@@ -32,9 +33,10 @@ public class ConversionDrawer implements Drawer {
         LinkedList<Point2> points = event.getPoints();
         for (Point2 p : points) {
             RealVector vector = p.toUniform();
-            RealVector value = event.getMatrix().preMultiply(vector);
+            RealVector value = event.getMatrix().multiply(MatrixUtils.createColumnRealMatrix(vector.toArray())).getColumnVector(0);
+            //RealVector value = event.getMatrix().preMultiply(vector);
             Point2 res = vectorToPoint(value);
-            if (checkPoint(res, canvas))
+            //if (checkPoint(res, canvas))
                 result.add(res);
         }
         drawChain(result, canvas);
@@ -71,15 +73,17 @@ public class ConversionDrawer implements Drawer {
     }
 
     private void drawClick(Point2 point, Color color, SimpleCanvas canvas) {
-        canvas.setColor(new Point2(point.getX(), point.getY()), color);
-        canvas.setColor(new Point2(point.getX() - 1, point.getY()), color);
-        canvas.setColor(new Point2(point.getX() - 2, point.getY()), color);
-        canvas.setColor(new Point2(point.getX(), point.getY() + 1), color);
-        canvas.setColor(new Point2(point.getX(), point.getY() + 2), color);
-        canvas.setColor(new Point2(point.getX() + 1, point.getY()), color);
-        canvas.setColor(new Point2(point.getX() + 2, point.getY()), color);
-        canvas.setColor(new Point2(point.getX(), point.getY() - 1), color);
-        canvas.setColor(new Point2(point.getX(), point.getY() - 2), color);
+        if (point.getX() > 2 && point.getY() > 2 && point.getX() < canvas.getWidth() - 2 && point.getY() < canvas.getHeight() - 2) {
+            canvas.setColor(new Point2(point.getX(), point.getY()), color);
+            canvas.setColor(new Point2(point.getX() - 1, point.getY()), color);
+            canvas.setColor(new Point2(point.getX() - 2, point.getY()), color);
+            canvas.setColor(new Point2(point.getX(), point.getY() + 1), color);
+            canvas.setColor(new Point2(point.getX(), point.getY() + 2), color);
+            canvas.setColor(new Point2(point.getX() + 1, point.getY()), color);
+            canvas.setColor(new Point2(point.getX() + 2, point.getY()), color);
+            canvas.setColor(new Point2(point.getX(), point.getY() - 1), color);
+            canvas.setColor(new Point2(point.getX(), point.getY() - 2), color);
+        }
     }
 
     private Point2 vectorToPoint(RealVector vector) {

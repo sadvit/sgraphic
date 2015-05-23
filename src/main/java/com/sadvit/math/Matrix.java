@@ -43,9 +43,9 @@ public class Matrix {
 
     public static RealMatrix getE() {
         return MatrixUtils.createRealMatrix(new double[][]{
-                {1, 1, 1},
-                {1, 1, 1},
-                {1, 1, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
         });
     }
 

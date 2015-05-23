@@ -8,8 +8,8 @@
 
 <GridPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="447.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sadvit.dialog.ConversionDialogController">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="292.0" />
-        <ColumnConstraints />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="448.0" minWidth="10.0" prefWidth="234.0" />
+        <ColumnConstraints maxWidth="213.0" minWidth="189.0" prefWidth="213.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="291.0" minHeight="10.0" prefHeight="241.0" vgrow="SOMETIMES" />
@@ -39,8 +39,8 @@
                          </rowConstraints>
                      <children>
                         <Button fx:id="addMoveButton" mnemonicParsing="false" text="Add" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                        <Slider fx:id="moveDySlider" GridPane.columnIndex="1" />
-                        <Slider fx:id="moveDxSlider" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Slider fx:id="moveDySlider" max="1" min="-1" GridPane.columnIndex="1" />
+                        <Slider fx:id="moveDxSlider" max="1" min="-1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Label text="dx:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                         <Label text="dy:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                         <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -65,7 +65,7 @@
                          </rowConstraints>
                          <children>
                              <Button fx:id="addRotateButton" mnemonicParsing="false" text="Add" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                             <Slider fx:id="rotateFSlider" GridPane.columnIndex="1" />
+                             <Slider fx:id="rotateFSlider" max="1" min="-1" GridPane.columnIndex="1" />
                              <Label text="f:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                              <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                              <Label text="Values:" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
@@ -89,8 +89,8 @@
                          </rowConstraints>
                          <children>
                              <Button fx:id="addScaleButton" mnemonicParsing="false" text="Add" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-                             <Slider fx:id="scaleDySlider" GridPane.columnIndex="1" />
-                             <Slider fx:id="scaleDxSlider" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                             <Slider fx:id="scaleDySlider" max="1" min="-1" GridPane.columnIndex="1" />
+                             <Slider fx:id="scaleDxSlider" max="1" min="-1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                              <Label text="a:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                              <Label text="b:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                              <TextField editable="false" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -130,7 +130,7 @@
               </Tab>
           </tabs>
        </TabPane>
-       <GridPane GridPane.columnIndex="1">
+       <GridPane prefHeight="279.0" prefWidth="210.0" GridPane.columnIndex="1">
            <columnConstraints>
                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
            </columnConstraints>
@@ -142,17 +142,19 @@
               <GridPane GridPane.rowIndex="1">
                   <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   </columnConstraints>
                   <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   </rowConstraints>
                  <children>
-                     <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                     <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                      <Button fx:id="applyButton" mnemonicParsing="false" onAction="#draw" text="Apply" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="cleanButton" mnemonicParsing="false" text="Clean" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                  </children>
               </GridPane>
-              <ListView editable="true" prefHeight="200.0" prefWidth="200.0" />
+              <ListView editable="true" prefHeight="225.0" prefWidth="202.0" />
           </children>
        </GridPane>
    </children>

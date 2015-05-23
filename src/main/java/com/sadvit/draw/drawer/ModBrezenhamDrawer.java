@@ -48,7 +48,10 @@ public class ModBrezenhamDrawer extends LineDrawer {
     private void draw(int x, int y, double c, SimpleCanvas canvas) {
         Color begin = Color.WHITE;
         Color end = intensity(begin, c);
-        canvas.setColor(x, y, end);
+        if (x > 0 && y > 0 && x < canvas.getWidth() && y < canvas.getHeight()) {
+            canvas.setColor(x, y, end);
+        }
+
     }
 
     private Color intensity(Color color, double c) {

@@ -18,6 +18,9 @@ import java.util.ResourceBundle;
 public class ConversionDialogController implements DialogController {
 
     @FXML
+    private Button cleanButton;
+
+    @FXML
     private Button addScaleButton;
 
     @FXML
@@ -87,16 +90,28 @@ public class ConversionDialogController implements DialogController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         addMoveButton.setOnAction(action -> {
-            addMove(moveDxSlider.getValue(), moveDySlider.getValue());
+            double dx = moveDxSlider.getValue() + 1.0;
+            double dy = moveDySlider.getValue() + 1.0;
+            addMove(dx, dy);
         });
         addRotateButton.setOnAction(action -> {
-            addRotate(rotateFSlider.getValue());
+            double f = rotateFSlider.getValue() + 1.0;
+            addRotate(f);
         });
         addScaleButton.setOnAction(action -> {
-            addScale(scaleDxSlider.getValue(), scaleDySlider.getValue());
+            double dx = scaleDxSlider.getValue() + 1.0;
+            double dy = scaleDySlider.getValue() + 1.0;
+            addScale(dx, dy);
         });
         addReflectButton.setOnAction(action -> {
-            addReflect(reflectASlider.getValue(), reflectBSlider.getValue(), reflectCSlider.getValue());
+            double a = reflectASlider.getValue() + 1.0;
+            double b = reflectBSlider.getValue() + 1.0;
+            double c = reflectCSlider.getValue() + 1.0;
+            addReflect(a, b, c);
+        });
+        cleanButton.setOnAction(action -> {
+            points.clear();
+            matrix = Matrix.getE();
         });
     }
 
